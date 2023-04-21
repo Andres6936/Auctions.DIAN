@@ -8,8 +8,12 @@ import {
 } from "@remix-run/react";
 import {MasterCSS} from '@master/css'
 import config from '../master.css'
-import {useLayoutEffect} from "react";
+import React, {useLayoutEffect} from "react";
 
+// Suppress useLayoutEffect warnings when running outside a browser
+if (typeof window === 'undefined') {
+    React.useLayoutEffect = React.useEffect;
+}
 
 export default function App() {
     useLayoutEffect(() => {
