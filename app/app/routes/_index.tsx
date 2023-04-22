@@ -8,8 +8,12 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
     return (
         <main className="flex flex:col bg:slate-95 font:sans">
-            <div className="flex:1">
+            <div className="position:relative flex:1">
                 <img className="w:100%" src="img/KevinSpace.jpg" alt="Photo"/>
+
+                <div className="position:absolute top:15 left:15 p:0.8rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
+                    <ChevronLeft className={"fg:white"}/>
+                </div>
             </div>
 
             <section className="px:1.5rem r:2rem flex flex:col translateY(-3rem) bg:slate-95">
