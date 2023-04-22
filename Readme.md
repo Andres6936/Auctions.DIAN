@@ -14,6 +14,12 @@ right.
 The formula p = ( a * s ) / 12
 (p: benefits, a: seniority, s: salary).
 
+## Interface Re-Desing
+
+<p align="center">
+    <img src="docs/Home.png" alt="Home" width="414"/>
+</p>
+
 ## Interface
 
 <p align="center">
