@@ -44,7 +44,7 @@ export default function Index() {
                     </div>
                 </div>
 
-                <button className="bg:blue-50 fg:white py:0.5rem r:1rem b:none">Modify</button>
+                <button className="bg:blue-50 fg:white py:0.5rem font-size:1.2rem r:1rem b:none">Modify</button>
             </section>
         </main>
     );
