@@ -1,5 +1,6 @@
 import type {V2_MetaFunction} from "@remix-run/node";
 import { ChevronLeft } from "~/icons/ChevronLeft";
+import { ListIcon } from "~/icons/List";
 
 export const meta: V2_MetaFunction = () => {
     return [{title: "New Remix App"}];
@@ -11,8 +12,12 @@ export default function Index() {
             <div className="position:relative flex:1">
                 <img className="w:100%" src="img/KevinSpace.jpg" alt="Photo"/>
 
-                <div className="position:absolute top:15 left:15 p:0.8rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
+                <div className="position:absolute top:15 left:15 py:0.8rem px:1rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
                     <ChevronLeft className={"fg:white"}/>
+                </div>
+
+                <div className="position:absolute top:15 right:15 py:0.8rem px:1rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
+                    <ListIcon className={"fg:white"}/>
                 </div>
             </div>
 
@@ -40,11 +45,11 @@ export default function Index() {
 
                     <div className="flex flex:col">
                         <p className={"m:0 opacity:0.8"}>Salary</p>
-                        <p className={"m:0 font-size:1.3rem font-weight:bold"}>$ 1200,0</p>
+                        <p className={"m:0 font-size:1.3rem font-weight:bold"}>$ 1,200.0</p>
                     </div>
                 </div>
 
-                <button className="bg:blue-50 fg:white py:0.5rem font-size:1.2rem r:1rem b:none">Modify</button>
+                <button className="bg:blue-50 fg:white py:0.5rem font-size:1L.2rem r:1rem b:none">Modify</button>
             </section>
         </main>
     );

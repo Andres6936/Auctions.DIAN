@@ -1,6 +1,5 @@
-interface Icon {
-    className?: string
-}
+import { Icon } from "~/types/Icon";
+
 
 export function ChevronLeft(props: Icon) {
     return (
