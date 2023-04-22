@@ -1,4 +1,5 @@
 import type {V2_MetaFunction} from "@remix-run/node";
+import { ChevronLeft } from "~/icons/ChevronLeft";
 
 export const meta: V2_MetaFunction = () => {
     return [{title: "New Remix App"}];
@@ -6,85 +7,40 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index() {
     return (
-        <main className="p:0.5rem flex flex:col bg:slate-95">
-            <section className="flex flex:col">
-                <h1 className="font-size:2rem opacity:0.5 font:sans font-weight:400">Personal Date</h1>
+        <main className="flex flex:col bg:slate-95 font:sans">
+            <div className="flex:1">
+                <img className="w:100%" src="img/KevinSpace.jpg" alt="Photo"/>
+            </div>
 
-                <div className="flex flex:col my:1rem gap-y:0.5rem">
-                    <div className="flex flex:row align-items:center">
-                        <label className="flex:2">Name</label>
-                        <input className="flex:5 r:1rem py:0.5rem b:1px|solid|#CCC" type="text" readOnly/>
+            <section className="px:1.5rem r:2rem flex flex:col translateY(-3rem) bg:slate-95">
+                <h1 className="font-size:2rem font:sans mb:0">Kevin Space</h1>
+                <h4 className="font-size:1.2rem opacity:0.5 font-weight:medium font:sans mt:0">President of America</h4>
+
+                <div className="flex flex:col mt:1rem mb:2rem gap-y:0.5rem">
+                    <div className="flex flex:col">
+                        <p className={"m:0 opacity:0.8"}>Biologic Gender</p>
+                        <p className={"m:0 font-size:1.3rem font-weight:bold"}>Masculine</p>
                     </div>
 
-                    <div className="flex flex:row">
-                        <label className="flex:2">Last</label>
-                        <input className="flex:5" type="text" readOnly/>
+                    <div className="flex flex:row gap-x:2rem">
+                        <div className="flex flex:col">
+                            <p className={"m:0 opacity:0.8"}>Date Born</p>
+                            <p className={"m:0 font-size:1.3rem font-weight:bold"}>1965/04/02</p>
+                        </div>
+
+                        <div className="flex flex:col">
+                            <p className={"m:0 opacity:0.8"}>Start Date</p>
+                            <p className={"m:0 font-size:1.3rem font-weight:bold"}>2001/05/14</p>
+                        </div>
                     </div>
 
-                    <div className="flex flex:row">
-                        <label className="flex:2">Gender</label>
-                        <input className="flex:5" type="text" readOnly/>
-                    </div>
-
-                    <div className="flex flex:row">
-                        <label className="flex:2">Date Born</label>
-                        <input className="flex:5" type="text" readOnly/>
-                    </div>
-
-                    <div className="flex flex:row">
-                        <label className="flex:2">Date Start</label>
-                        <input className="flex:5" type="text" readOnly/>
+                    <div className="flex flex:col">
+                        <p className={"m:0 opacity:0.8"}>Salary</p>
+                        <p className={"m:0 font-size:1.3rem font-weight:bold"}>$ 1200,0</p>
                     </div>
                 </div>
-                <div className="offset-sm-1 col-sm-4 mt-3 mt-sm-0">
-                    <img className="w:100%" src="img/KevinSpace.jpg" alt="Photo"/>
-                </div>
-            </section>
 
-            <section className="flex flex:col">
-                <h5 className="card-title col-12 border-bottom">Salary</h5>
-                <label htmlFor="input-salary" className="col-sm-4 col-4 text-center col-form-label">Salary</label>
-                <div className="input-group col-sm-4 col-8">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">$</span>
-                    </div>
-                    <input id="input-salary" className="form-control" type="text"/>
-                </div>
-                <button className="col-sm-4 col-12 mt-3 mt-sm-0 btn btn-primary">Modify</button>
-            </section>
-
-            <section className="flex flex:col">
-                <h5 className="card-title col-12 border-bottom">Calculus</h5>
-
-                <div className="col-7 col-sm-6">
-                    <button className="col-12 btn btn-block btn-outline-primary text-nowrap">Calculate Age</button>
-                    <button className="col-12 btn btn-block btn-outline-primary text-nowrap">Calculate Old</button>
-                    <button className="col-12 btn btn-block btn-outline-primary text-nowrap">Calculate Pre</button>
-                </div>
-
-                <div className="col-5 col-sm-6">
-                    <label className="col-12">
-                        <input className="form-control" type="text" readOnly/>
-                    </label>
-                    <label className="col-12">
-                        <input className="form-control" type="text" readOnly/>
-                    </label>
-                    <label className="col-12">
-                        <input className="form-control" type="text" readOnly/>
-                    </label>
-                </div>
-            </section>
-
-            <section className="flex flex:col">
-                <h5 className="card-title col-12 border-bottom">Extension Points</h5>
-
-                <div className="col-6">
-                    <button className="btn btn-block btn-outline-secondary">Option 1</button>
-                </div>
-
-                <div className="col-6">
-                    <button className="btn btn-block btn-outline-secondary">Option 2</button>
-                </div>
+                <button className="bg:blue-50 fg:white py:0.5rem r:1rem b:none">Modify</button>
             </section>
         </main>
     );
