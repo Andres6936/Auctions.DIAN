@@ -5,7 +5,7 @@ import {ListIcon} from "@/icons/List";
 
 export function App() {
   return (
-      <main className="flex flex:col bg:slate-95 font:sans">
+      <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw bg:slate-95 font:sans">
           <div className="position:relative flex:1">
               <img className="w:100%" src={photo} alt="Photo"/>
 
@@ -48,6 +48,6 @@ export function App() {
 
               <button className="bg:blue-50 fg:white py:0.5rem font-size:1L.2rem r:1rem b:none">Modify</button>
           </section>
-      </main>
+      </section>
   );
 }
