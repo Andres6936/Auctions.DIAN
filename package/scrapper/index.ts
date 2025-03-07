@@ -38,27 +38,29 @@ const token = await getToken();
 console.log("Getting auctions")
 for (let index = 0; index < 3000; index++) {
     try {
-        const streamAuction = await useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        const [streamAuction, streamKey, streamOfficial] = await Promise.all([
+            useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+            useQuery(`/remate-virtual/api/v1/revautos/palabrasClave/${index}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+            useQuery(`/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/${index}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        ]);
 
-        const streamKey = await useQuery(`/remate-virtual/api/v1/revautos/palabrasClave/${index}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-
-        const streamOfficial = await useQuery(`/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/${index}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-
-        const auction = await streamAuction.json();
-        const key = await streamKey.json();
-        const official = await streamOfficial.json();
+        const [key, auction, official] = await Promise.all([
+            streamKey.json(),
+            streamAuction.json(),
+            streamOfficial.json()
+        ]);
 
         console.log(`Inserting value of auction (${index})`)
         db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
