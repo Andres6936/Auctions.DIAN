@@ -4,13 +4,8 @@ import {useNavigate} from "react-router";
 import {UserButton, useUser} from "@stackframe/react";
 
 export function Main() {
-    const user = useUser();
+    const user = useUser({ or: "redirect" });
     const navigate = useNavigate();
-
-    if (!user) {
-        navigate("/handler/sign-up");
-        return null;
-    }
 
     const items = [
         {
