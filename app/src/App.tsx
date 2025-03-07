@@ -10,11 +10,11 @@ export function App() {
               <img className="w:100%" src={photo} alt="Photo"/>
 
               <div className="position:absolute top:15 left:15 py:0.8rem px:1rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
-                  <ChevronLeft className={"fg:white"}/>
+                  <ChevronLeft className={"color:white"}/>
               </div>
 
               <div className="position:absolute top:15 right:15 py:0.8rem px:1rem bg:rgba(255,255,255,0.2) bd:blur(12px) r:0.5rem">
-                  <ListIcon className={"fg:white"}/>
+                  <ListIcon className={"color:white"}/>
               </div>
           </div>
 
@@ -46,7 +46,7 @@ export function App() {
                   </div>
               </div>
 
-              <button className="bg:blue-50 fg:white py:0.5rem font-size:1L.2rem r:1rem b:none">Modify</button>
+              <button className="bg:blue-50 color:white py:0.5rem font-size:1L.2rem r:1rem b:none">Modify</button>
           </section>
       </section>
   );
