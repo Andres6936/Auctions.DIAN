@@ -4,7 +4,8 @@ import {useNavigate} from "react-router";
 import {UserButton, useUser} from "@stackframe/react";
 
 export function Main() {
-    const user = useUser({ or: "redirect" });
+    useUser({ or: "redirect" });
+
     const navigate = useNavigate();
 
     const items = [
