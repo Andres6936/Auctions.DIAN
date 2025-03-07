@@ -15,7 +15,7 @@ export function Main() {
         },
         {
             icon: <User size={18} className="color:white"/>,
-            label: 'Profile', onClick: () => alert('Profile!')
+            label: 'Profile', onClick: () => navigate('/employee')
         },
         {
             icon: <Archive size={18} className="color:white"/>,
