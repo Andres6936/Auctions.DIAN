@@ -37,6 +37,59 @@ const getToken = async () => {
     return payload.accessToken;
 }
 
+const insertEmpty = async (index: number, e: unknown) => {
+    console.time(`Skipping request (${index})`)
+    using query = db.query(
+        `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+         VALUES (${index},
+                 'application/text',
+                 '{}',
+                 '{}',
+                 '${JSON.stringify(e)}')`
+    );
+    query.run()
+    console.timeEnd(`Skipping request (${index})`)
+}
+
+const insertAuction = async (index: number) => {
+    console.time(`Processing auction (${index})`)
+    const [streamAuction, streamKey, streamOfficial] = await Promise.all([
+        useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+        useQuery(`/remate-virtual/api/v1/revautos/palabrasClave/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+        useQuery(`/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    ]);
+
+    const [key, auction, official] = await Promise.all([
+        streamKey.json(),
+        streamAuction.json(),
+        streamOfficial.json()
+    ]);
+
+
+    using query = db.query(
+        `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+         VALUES (${index},
+                 'application/json',
+                 '${JSON.stringify(key)}',
+                 '${JSON.stringify(official)}',
+                 '${JSON.stringify(auction)}')`
+    );
+    query.run();
+    console.timeEnd(`Processing auction (${index})`)
+}
+
 const token = await getToken();
 
 console.time("Query the last index of sequence")
@@ -45,59 +98,13 @@ console.timeEnd("Query the last index of sequence")
 
 for (let index = Index; index < 3000; index++) {
     try {
-        console.time(`Processing auction (${index})`)
-        const [streamAuction, streamKey, streamOfficial] = await Promise.all([
-            useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }),
-            useQuery(`/remate-virtual/api/v1/revautos/palabrasClave/${index}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }),
-            useQuery(`/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/${index}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-        ]);
-
-        const [key, auction, official] = await Promise.all([
-            streamKey.json(),
-            streamAuction.json(),
-            streamOfficial.json()
-        ]);
-
-
-        using query = db.query(
-            `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
-             VALUES (${index},
-                     'application/json',
-                     '${JSON.stringify(key)}',
-                     '${JSON.stringify(official)}',
-                     '${JSON.stringify(auction)}')`
-        );
-        query.run();
-        console.timeEnd(`Processing auction (${index})`)
-
+        await insertAuction(index);
     } catch (e) {
-        console.time(`Skipping request (${index})`)
-        using query = db.query(
-            `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
-             VALUES (${index},
-                     'application/text',
-                     '{}',
-                     '{}',
-                     '${JSON.stringify(e)}')`
-        );
-        query.run()
-        console.timeEnd(`Skipping request (${index})`)
+        await insertEmpty(index, e);
     }
 
     // Wait 500ms
-    await Bun.sleep(500);
+    await Bun.sleep(250);
 }
 
 // Clean up function
