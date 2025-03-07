@@ -7,6 +7,8 @@ db.query(`
     (
         "Serial"  INTEGER PRIMARY KEY AUTOINCREMENT,
         "Id" INTEGER NOT NULL,
+        "Key" TEXT NOT NULL ,
+        "Official" TEXT NOT NULL,
         "Type" TEXT NOT NULL,
         "Payload" TEXT NOT NULL
     )
@@ -42,10 +44,31 @@ for (let index = 0; index < 3000; index++) {
             }
         })
 
+        const streamKey = await useQuery(`/remate-virtual/api/v1/revautos/palabrasClave/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        const streamOfficial = await useQuery(`/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
         const auction = await streamAuction.json();
+        const key = await streamKey.json();
+        const official = await streamOfficial.json();
+
         console.log(`Inserting value of auction (${index})`)
-        db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
-                  VALUES (${index}, 'application/json', '${JSON.stringify(auction)}')`).run()
+        db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+                  VALUES (${index}, 
+                          'application/json', 
+                          '${JSON.stringify(key)}', 
+                          '${JSON.stringify(official)}',
+                          '${JSON.stringify(auction)}')`)
+            .run()
+
     } catch (e) {
         console.log("Skipping request")
         db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
