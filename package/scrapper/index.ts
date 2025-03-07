@@ -2,17 +2,21 @@ import {Database} from "bun:sqlite";
 
 const db = new Database("Auctions.sqlite");
 
-db.query(`
-    CREATE TABLE IF NOT EXISTS Auctions
-    (
-        "Serial"  INTEGER PRIMARY KEY AUTOINCREMENT,
-        "Id" INTEGER NOT NULL,
-        "Key" TEXT NOT NULL ,
-        "Official" TEXT NOT NULL,
-        "Type" TEXT NOT NULL,
-        "Payload" TEXT NOT NULL
-    )
-`).run();
+// Scoped block of code, used for initialize
+{
+    using query = db.query(`
+        CREATE TABLE IF NOT EXISTS Auctions
+        (
+            "Serial"   INTEGER PRIMARY KEY AUTOINCREMENT,
+            "Id"       INTEGER NOT NULL,
+            "Key"      TEXT    NOT NULL,
+            "Official" TEXT    NOT NULL,
+            "Type"     TEXT    NOT NULL,
+            "Payload"  TEXT    NOT NULL
+        )
+    `);
+    query.run();
+}
 
 const useQuery = async (url: string, options?: RequestInit) => {
     return await fetch(new URL(url, process.env.BASE_URL).href, options);
@@ -34,9 +38,9 @@ const getToken = async () => {
 }
 
 const token = await getToken();
+const {Index} = await db.query("SELECT MAX(Id) AS 'Index' FROM Auctions").get() as { Index: number };
 
-console.log("Getting auctions")
-for (let index = 0; index < 3000; index++) {
+for (let index = Index; index < 3000; index++) {
     try {
         console.time(`Processing auction (${index})`)
         const [streamAuction, streamKey, streamOfficial] = await Promise.all([
@@ -64,24 +68,28 @@ for (let index = 0; index < 3000; index++) {
         ]);
 
 
-        db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
-                  VALUES (${index},
-                          'application/json',
-                          '${JSON.stringify(key)}',
-                          '${JSON.stringify(official)}',
-                          '${JSON.stringify(auction)}')`)
-            .run()
+        using query = db.query(
+            `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+             VALUES (${index},
+                     'application/json',
+                     '${JSON.stringify(key)}',
+                     '${JSON.stringify(official)}',
+                     '${JSON.stringify(auction)}')`
+        );
+        query.run();
         console.timeEnd(`Processing auction (${index})`)
 
     } catch (e) {
         console.time(`Skipping request (${index})`)
-        db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
-                  VALUES (${index}, 
-                          'application/text',
-                          '{}',
-                          '{}',
-                          '${JSON.stringify(e)}')`)
-            .run()
+        using query = db.query(
+            `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+             VALUES (${index},
+                     'application/text',
+                     '{}',
+                     '{}',
+                     '${JSON.stringify(e)}')`
+        );
+        query.run()
         console.timeEnd(`Skipping request (${index})`)
     }
 
@@ -89,3 +97,5 @@ for (let index = 0; index < 3000; index++) {
     await Bun.sleep(500);
 }
 
+// Clean up function
+db.close();
