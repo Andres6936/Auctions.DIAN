@@ -38,7 +38,10 @@ const getToken = async () => {
 }
 
 const token = await getToken();
+
+console.time("Query the last index of sequence")
 const {Index} = await db.query("SELECT MAX(Id) AS 'Index' FROM Auctions").get() as { Index: number };
+console.timeEnd("Query the last index of sequence")
 
 for (let index = Index; index < 3000; index++) {
     try {
