@@ -1,10 +1,13 @@
-import { Database } from "bun:sqlite";
+import {Database} from "bun:sqlite";
 
 const db = new Database("Auctions.sqlite");
 
 db.query(`
-    CREATE TABLE IF NOT EXISTS Auctions (
-        "Serial" INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE IF NOT EXISTS Auctions
+    (
+        "Serial"  INTEGER PRIMARY KEY AUTOINCREMENT,
+        "Id" INTEGER NOT NULL,
+        "Type" TEXT NOT NULL,
         "Payload" TEXT NOT NULL
     )
 `).run();
@@ -29,15 +32,24 @@ const getToken = async () => {
 }
 
 const token = await getToken();
-const streamAuctions = await useQuery("/remate-virtual/api/v1/revautos/list/0/25", {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
 
-console.log("Auctions:")
-const auctions = await streamAuctions.json();
-for (const auction of auctions) {
-    console.log("Inserting value of auction")
-    db.query(`INSERT INTO Auctions ("Payload") VALUES ('${JSON.stringify(auction)}')`).run()
+console.log("Getting auctions")
+for (let index = 0; index < 3000; index++) {
+    try {
+        const streamAuction = await useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        const auction = await streamAuction.json();
+        console.log(`Inserting value of auction (${index})`)
+        db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
+                  VALUES (${index}, 'application/json', '${JSON.stringify(auction)}')`).run()
+    } catch (e) {
+        console.log("Skipping request")
+        db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
+                  VALUES (${index}, 'application/text', '${JSON.stringify(e)}')`).run()
+    }
 }
+
