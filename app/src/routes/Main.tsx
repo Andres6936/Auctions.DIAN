@@ -1,9 +1,16 @@
 import Dock from "@/components/dock";
 import {Archive, Home, Settings, User} from "lucide-react";
 import {useNavigate} from "react-router";
+import {UserButton, useUser} from "@stackframe/react";
 
 export function Main() {
+    const user = useUser();
     const navigate = useNavigate();
+
+    if (!user) {
+        navigate("/handler/sign-up");
+        return null;
+    }
 
     const items = [
         {
@@ -26,6 +33,8 @@ export function Main() {
 
     return (
         <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw bg:slate-95 font:sans">
+            <UserButton/>
+
             <Dock
                 items={items}
                 panelHeight={68}
