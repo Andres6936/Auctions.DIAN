@@ -1,0 +1,23 @@
+### Sign In
+POST https://rematesvirtuales.dian.gov.co/remate-virtual/api/auth/signin
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "EnEtldJjmen8BQk8XlbS6Ua5f7W3MhQ5lMmOEnIWyxM=",
+  "password": "JWG4oaaul1oX+fxYdUDO/r7HPcxjwMPnRDHfgf2oy5I="
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.global.set("Token", response.body.accessToken)
+    });
+%}
+
+### Total of auctions
+GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/revautos/list/count
+Authorization: Bearer {{Token}}
+
+###
+GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/revautos/list/0/25
+Authorization: Bearer {{Token}}
