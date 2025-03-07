@@ -3,10 +3,22 @@ import {Home, Archive, User, Settings} from "lucide-react";
 
 export function Main() {
     const items = [
-        {icon: <Home size={18} className="color:white"/>, label: 'Home', onClick: () => alert('Home!')},
-        {icon: <Archive size={18} className="color:white"/>, label: 'Archive', onClick: () => alert('Archive!')},
-        {icon: <User size={18} className="color:white"/>, label: 'Profile', onClick: () => alert('Profile!')},
-        {icon: <Settings size={18} className="color:white"/>, label: 'Settings', onClick: () => alert('Settings!')},
+        {
+            icon: <Home size={18} className="color:white"/>,
+            label: 'Home', onClick: () => alert('Home!')
+        },
+        {
+            icon: <Archive size={18} className="color:white"/>,
+            label: 'Archive', onClick: () => alert('Archive!')
+        },
+        {
+            icon: <User size={18} className="color:white"/>,
+            label: 'Profile', onClick: () => alert('Profile!')
+        },
+        {
+            icon: <Settings size={18} className="color:white"/>,
+            label: 'Settings', onClick: () => alert('Settings!')
+        },
     ];
 
     return (
