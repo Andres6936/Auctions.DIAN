@@ -18,6 +18,18 @@ Content-Type: application/json
 GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/revautos/list/count
 Authorization: Bearer {{Token}}
 
-###
+### Get list of auction
 GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/revautos/list/0/25
+Authorization: Bearer {{Token}}
+
+### Get details of auction
+GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/remate/bienes/getAll/2033
+Authorization: Bearer {{Token}}
+
+### Get key of auction
+GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/revautos/palabrasClave/2033
+Authorization: Bearer {{Token}}
+
+### Get official of auction
+GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/2033
 Authorization: Bearer {{Token}}
