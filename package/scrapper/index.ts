@@ -65,9 +65,9 @@ for (let index = 0; index < 3000; index++) {
 
 
         db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
-                  VALUES (${index}, 
-                          'application/json', 
-                          '${JSON.stringify(key)}', 
+                  VALUES (${index},
+                          'application/json',
+                          '${JSON.stringify(key)}',
                           '${JSON.stringify(official)}',
                           '${JSON.stringify(auction)}')`)
             .run()
@@ -75,8 +75,13 @@ for (let index = 0; index < 3000; index++) {
 
     } catch (e) {
         console.time(`Skipping request (${index})`)
-        db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
-                  VALUES (${index}, 'application/text', '${JSON.stringify(e)}')`).run()
+        db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
+                  VALUES (${index}, 
+                          'application/text',
+                          '{}',
+                          '{}',
+                          '${JSON.stringify(e)}')`)
+            .run()
         console.timeEnd(`Skipping request (${index})`)
     }
 
