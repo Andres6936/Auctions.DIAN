@@ -74,9 +74,10 @@ for (let index = 0; index < 3000; index++) {
         console.timeEnd(`Processing auction (${index})`)
 
     } catch (e) {
-        console.log("Skipping request")
+        console.time(`Skipping request (${index})`)
         db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
                   VALUES (${index}, 'application/text', '${JSON.stringify(e)}')`).run()
+        console.timeEnd(`Skipping request (${index})`)
     }
 
     // Wait 500ms
