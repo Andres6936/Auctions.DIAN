@@ -86,6 +86,6 @@ for (let index = 0; index < 3000; index++) {
     }
 
     // Wait 500ms
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await Bun.sleep(500);
 }
 
