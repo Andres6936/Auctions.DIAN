@@ -5,11 +5,12 @@
  * It is included in `src/index.html`.
  */
 
+import {stackClientApp} from "@/stack";
 import {createRoot} from "react-dom/client";
-import {App} from "./App";
 import {BrowserRouter, Route, Routes, useLocation} from "react-router";
 import {StackHandler, StackProvider, StackTheme} from "@stackframe/react";
-import {stackClientApp} from "@/stack";
+import {Employee} from "@/routes/Employee";
+import {Main} from "@/routes/Main";
 
 function HandlerRoutes() {
     const location = useLocation();
@@ -26,7 +27,8 @@ const app = (
             <StackTheme>
                 <Routes>
                     <Route path="/handler/*" element={<HandlerRoutes />} />
-                    <Route path="/" element={<App/>}/>
+                    <Route path="/employee" element={<Employee/>}/>
+                    <Route path="/" element={<Main/>}/>
                 </Routes>
             </StackTheme>
         </StackProvider>

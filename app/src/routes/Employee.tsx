@@ -1,9 +1,9 @@
-import "./index.css";
+import "../index.css";
 import photo from '@/img/KevinSpace.jpg';
 import {ChevronLeft} from "@/icons/ChevronLeft";
 import {ListIcon} from "@/icons/List";
 
-export function App() {
+export function Employee() {
   return (
       <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw bg:slate-95 font:sans">
           <div className="position:relative flex:1">
