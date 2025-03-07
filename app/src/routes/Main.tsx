@@ -8,12 +8,12 @@ export function Main() {
             label: 'Home', onClick: () => alert('Home!')
         },
         {
-            icon: <Archive size={18} className="color:white"/>,
-            label: 'Archive', onClick: () => alert('Archive!')
-        },
-        {
             icon: <User size={18} className="color:white"/>,
             label: 'Profile', onClick: () => alert('Profile!')
+        },
+        {
+            icon: <Archive size={18} className="color:white"/>,
+            label: 'Archive', onClick: () => alert('Archive!')
         },
         {
             icon: <Settings size={18} className="color:white"/>,
