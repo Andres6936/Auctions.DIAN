@@ -38,6 +38,7 @@ const token = await getToken();
 console.log("Getting auctions")
 for (let index = 0; index < 3000; index++) {
     try {
+        console.time(`Processing auction (${index})`)
         const [streamAuction, streamKey, streamOfficial] = await Promise.all([
             useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
                 headers: {
@@ -62,7 +63,7 @@ for (let index = 0; index < 3000; index++) {
             streamOfficial.json()
         ]);
 
-        console.log(`Inserting value of auction (${index})`)
+
         db.query(`INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
                   VALUES (${index}, 
                           'application/json', 
@@ -70,6 +71,7 @@ for (let index = 0; index < 3000; index++) {
                           '${JSON.stringify(official)}',
                           '${JSON.stringify(auction)}')`)
             .run()
+        console.timeEnd(`Processing auction (${index})`)
 
     } catch (e) {
         console.log("Skipping request")
