@@ -51,5 +51,8 @@ for (let index = 0; index < 3000; index++) {
         db.query(`INSERT INTO Auctions ("Id", "Type", "Payload")
                   VALUES (${index}, 'application/text', '${JSON.stringify(e)}')`).run()
     }
+
+    // Wait 500ms
+    await new Promise(resolve => setTimeout(resolve, 500));
 }
 
