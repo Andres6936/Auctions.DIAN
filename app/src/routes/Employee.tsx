@@ -1,4 +1,5 @@
-import "../index.css";
+import "@/index.css";
+
 import photo from '@/img/KevinSpace.jpg';
 import {ChevronLeft} from "@/icons/ChevronLeft";
 import {ListIcon} from "@/icons/List";
