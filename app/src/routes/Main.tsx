@@ -1,7 +1,10 @@
 import Dock from "@/components/dock";
-import {Home, Archive, User, Settings} from "lucide-react";
+import {Archive, Home, Settings, User} from "lucide-react";
+import {useNavigate} from "react-router";
 
 export function Main() {
+    const navigate = useNavigate();
+
     const items = [
         {
             icon: <Home size={18} className="color:white"/>,
@@ -17,7 +20,7 @@ export function Main() {
         },
         {
             icon: <Settings size={18} className="color:white"/>,
-            label: 'Settings', onClick: () => alert('Settings!')
+            label: 'Settings', onClick: () => navigate('/handler/account-settings')
         },
     ];
 
