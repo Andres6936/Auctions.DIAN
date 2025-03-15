@@ -157,7 +157,7 @@ export async function processRow(id: number, payload: any) {
                 IdGood: good.idBien,
                 AutoId: object.idAuto,
                 GoodTypeId: typeId.Id,
-                PropertyTypeId: property?.Id ?? null,
+                TypeProperty: property.descripcion?.toUpperCase() ?? null,
                 GoodIdentification: good.identificacionBien,
                 DepartmentId: department.idDepartamento,
                 MunicipalityId: municipality.idMunicipio,
@@ -168,7 +168,6 @@ export async function processRow(id: number, payload: any) {
                 CreationDate: good.fechaCreacion,
                 ModifiedBy: good.modificadoPor,
                 ModificationDate: good.fechaModificacion,
-                ZoneId: zone.id,
                 TypeZone: zone.descripcion.toUpperCase(),
             })
         }

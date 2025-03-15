@@ -59,7 +59,7 @@ export const Goods = sqliteTable('Goods', {
     IdGood: integer('IdGood').primaryKey(),
     AutoId: integer('AutoId').references(() => Autos.IdAuto),
     GoodTypeId: integer('GoodTypeId'),
-    PropertyTypeId: integer('PropertyTypeId'),
+    TypeProperty: text('TypeProperty'),
     GoodIdentification: text('GoodIdentification'),
     DepartmentId: integer('DepartmentId'),
     MunicipalityId: integer('MunicipalityId'),
@@ -70,7 +70,6 @@ export const Goods = sqliteTable('Goods', {
     CreationDate: text('CreationDate'),
     ModifiedBy: text('ModifiedBy'),
     ModificationDate: text('ModificationDate'),
-    ZoneId: integer('ZoneId'),
     TypeZone: text('TypeZone'),
 });
 
