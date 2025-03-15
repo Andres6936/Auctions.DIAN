@@ -6,8 +6,7 @@ const sqlite = new Database(process.env.DB_FILE_NAME!);
 const db = drizzle({client: sqlite});
 
 (async () => {
-    let i = 0;
-    const query = sqlite.query("SELECT * FROM Auctions");
+    const query = sqlite.query("SELECT * FROM Auctions LIMIT 10");
     for (const row of query.iterate()) {
         try {
             const payload = JSON.parse(row.Payload)
@@ -34,7 +33,7 @@ const db = drizzle({client: sqlite});
                 DelegationResolutionNumber: object.nroResolucionDelegacion,
                 DelegationResolutionDate: object.fechaResolucionDelegacion,
                 AutoDate: object.fechaAuto,
-                FileNumber: object.nroExpedente,
+                FileNumber: object.nroExpedente.trim(),
                 SectionalAddress: object.direccionSeccional,
                 Dependency: object.dependencia,
                 AutoDescription: object.descripcionAuto,
@@ -51,10 +50,7 @@ const db = drizzle({client: sqlite});
                 ModificationDate: object.fechaModificacion,
             })
         } catch (e) {
-            console.error('Error parsing payload, caused by ', e)
+            console.error('Error processing object, caused by ', e)
         }
-
-        i += 1;
-        if (i > 10) break;
     }
 })()
