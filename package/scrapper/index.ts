@@ -1,10 +1,13 @@
 import {Database} from "bun:sqlite";
+import { drizzle } from "drizzle-orm/bun-sqlite";
 
-const db = new Database("Auctions.sqlite");
+const sqlite = new Database(process.env.DB_FILE_NAME!);
+const db = drizzle({client: sqlite});
+
 
 // Scoped block of code, used for initialize
 {
-    using query = db.query(`
+    using query = sqlite.query(`
         CREATE TABLE IF NOT EXISTS Auctions
         (
             "Serial"   INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +42,7 @@ const getToken = async () => {
 
 const insertEmpty = async (index: number, e: unknown) => {
     console.time(`Skipping request (${index})`)
-    using query = db.query(
+    using query = sqlite.query(
         `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
          VALUES (${index},
                  'application/text',
@@ -78,7 +81,7 @@ const insertAuction = async (index: number) => {
     ]);
 
 
-    using query = db.query(
+    using query = sqlite.query(
         `INSERT INTO Auctions ("Id", "Type", "Key", "Official", "Payload")
          VALUES (${index},
                  'application/json',
@@ -93,7 +96,7 @@ const insertAuction = async (index: number) => {
 const token = await getToken();
 
 console.time("Query the last index of sequence")
-const {Index} = await db.query("SELECT MAX(Id) AS 'Index' FROM Auctions").get() as { Index: number };
+const {Index} = await sqlite.query("SELECT MAX(Id) AS 'Index' FROM Auctions").get() as { Index: number };
 console.timeEnd("Query the last index of sequence")
 
 for (let index = Index; index < 3000; index++) {
@@ -108,4 +111,4 @@ for (let index = Index; index < 3000; index++) {
 }
 
 // Clean up function
-db.close();
+sqlite.close();
