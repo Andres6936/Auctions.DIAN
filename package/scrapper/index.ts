@@ -90,6 +90,9 @@ const db = drizzle({client: sqlite});
                 ModificationDate: stateRegister.fechaModificacion,
             })
 
+            if (object.revPalabrasClaves.length > 0) {
+                console.log('Found register with keywords: ', row.Id)
+            }
 
             const goods = object.revBienes;
             for (const good of goods) {
@@ -181,51 +184,51 @@ const db = drizzle({client: sqlite});
                     ModificationDate: good.fechaModificacion,
                     ZoneId: zone.id,
                 })
+            }
 
-                const hearings = good.revAudiencias;
-                for (let hearing of hearings) {
-                    const actingAs = hearing.actuandoComo;
-                    await db.insert(ActingAs).values({
-                        Serial: Bun.randomUUIDv7(),
-                        Id: actingAs.id,
-                        DomainName: actingAs.nombreDominio,
-                        Code: actingAs.codigo,
-                        Description: actingAs.descripcion,
-                        Active: actingAs.activo,
-                        CreatedBy: actingAs.creado,
-                        CreationDate: actingAs.fechaCreacion,
-                        ModifiedBy: actingAs.modificadoPor,
-                        ModificationDate: actingAs.fechaModificacion,
-                    })
+            const hearings = object.revAudiencias;
+            for (let hearing of hearings) {
+                const actingAs = hearing.actuandoComo;
+                await db.insert(ActingAs).values({
+                    Serial: Bun.randomUUIDv7(),
+                    Id: actingAs.id,
+                    DomainName: actingAs.nombreDominio,
+                    Code: actingAs.codigo,
+                    Description: actingAs.descripcion,
+                    Active: actingAs.activo,
+                    CreatedBy: actingAs.creado,
+                    CreationDate: actingAs.fechaCreacion,
+                    ModifiedBy: actingAs.modificadoPor,
+                    ModificationDate: actingAs.fechaModificacion,
+                })
 
-                    const hearingState = hearing.estadoAudiencia;
-                    await db.insert(HearingState).values({
-                        Serial: Bun.randomUUIDv7(),
-                        Id: hearingState.id,
-                        DomainName: hearingState.nombreDominio,
-                        Code: hearingState.codigo,
-                        Description: hearingState.descripcion,
-                        Active: hearingState.activo,
-                        CreatedBy: hearingState.creado,
-                        CreationDate: hearingState.fechaCreacion,
-                        ModifiedBy: hearingState.modificadoPor,
-                        ModificationDate: hearingState.fechaModificacion,
-                    })
+                const hearingState = hearing.estadoAudiencia;
+                await db.insert(HearingState).values({
+                    Serial: Bun.randomUUIDv7(),
+                    Id: hearingState.id,
+                    DomainName: hearingState.nombreDominio,
+                    Code: hearingState.codigo,
+                    Description: hearingState.descripcion,
+                    Active: hearingState.activo,
+                    CreatedBy: hearingState.creado,
+                    CreationDate: hearingState.fechaCreacion,
+                    ModifiedBy: hearingState.modificadoPor,
+                    ModificationDate: hearingState.fechaModificacion,
+                })
 
-                    await db.insert(Hearings).values({
-                        IdHearing: hearing.idAudiencia,
-                        AutoId: object.idAuto,
-                        ActingAs: actingAs.id,
-                        HearingState: hearingState.id,
-                        HearingDate: hearing.fechaAudiencia,
-                        HearingTime: hearing.horaAudiencia,
-                        HearingEndDate: hearing.fechaFinAudiencia,
-                        CreatedBy: hearing.creadoPor,
-                        CreationDate: hearing.fechaCreacion,
-                        ModifiedBy: hearing.modificadoPor,
-                        ModificationDate: hearing.fechaModificacion,
-                    })
-                }
+                await db.insert(Hearings).values({
+                    IdHearing: hearing.idAudiencia,
+                    AutoId: object.idAuto,
+                    ActingAs: actingAs.id,
+                    HearingState: hearingState.id,
+                    HearingDate: hearing.fechaAudiencia,
+                    HearingTime: hearing.horaAudiencia,
+                    HearingEndDate: hearing.fechaFinAudiencia,
+                    CreatedBy: hearing.creadoPor,
+                    CreationDate: hearing.fechaCreacion,
+                    ModifiedBy: hearing.modificadoPor,
+                    ModificationDate: hearing.fechaModificacion,
+                })
             }
         } catch (e) {
             console.error('Error processing object, caused by ', e, `Row: ${row.Id}`)
