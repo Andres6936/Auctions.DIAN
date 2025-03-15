@@ -158,14 +158,16 @@ const db = drizzle({client: sqlite});
                 })
 
                 const images = good.revBienesImagenes;
-                await db.insert(GoodsImages).values(images.map(it => ({
-                    IdImage: it.idImagen,
-                    GoodId: good.idBien,
-                    FilingNumber: it.nroRadicado,
-                    ImageStorageUrl: it.urlStorageImagen,
-                    ImageName: it.nombreImagen,
-                    ImagePath: it.rutaImagen,
-                })))
+                if (images.length >= 1) {
+                    await db.insert(GoodsImages).values(images.map(it => ({
+                        IdImage: it.idImagen,
+                        GoodId: good.idBien,
+                        FilingNumber: it.nroRadicado,
+                        ImageStorageUrl: it.urlStorageImagen,
+                        ImageName: it.nombreImagen,
+                        ImagePath: it.rutaImagen,
+                    })))
+                }
 
                 await db.insert(Goods).values({
                     IdGood: good.idBien,
