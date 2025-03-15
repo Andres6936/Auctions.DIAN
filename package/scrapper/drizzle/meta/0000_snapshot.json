@@ -1,0 +1,1152 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "4069ba19-a4af-4825-91d6-45db405cd966",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "ActingAs": {
+      "name": "ActingAs",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "AuctionState": {
+      "name": "AuctionState",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoId": {
+          "name": "AutoId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "AuctionState_AutoId_Autos_IdAuto_fk": {
+          "name": "AuctionState_AutoId_Autos_IdAuto_fk",
+          "tableFrom": "AuctionState",
+          "tableTo": "Autos",
+          "columnsFrom": [
+            "AutoId"
+          ],
+          "columnsTo": [
+            "IdAuto"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Autos": {
+      "name": "Autos",
+      "columns": {
+        "IdAuto": {
+          "name": "IdAuto",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoNumber": {
+          "name": "AutoNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DelegationResolutionNumber": {
+          "name": "DelegationResolutionNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DelegationResolutionDate": {
+          "name": "DelegationResolutionDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AutoDate": {
+          "name": "AutoDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FileNumber": {
+          "name": "FileNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SectionalAddress": {
+          "name": "SectionalAddress",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Dependency": {
+          "name": "Dependency",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AutoDescription": {
+          "name": "AutoDescription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Commissioner": {
+          "name": "Commissioner",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BiddingPercentage": {
+          "name": "BiddingPercentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TotalBiddingBaseValue": {
+          "name": "TotalBiddingBaseValue",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BidPercentage": {
+          "name": "BidPercentage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "BidValue": {
+          "name": "BidValue",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DepositAccountNumber": {
+          "name": "DepositAccountNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TotalAppraisalValue": {
+          "name": "TotalAppraisalValue",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Departments": {
+      "name": "Departments",
+      "columns": {
+        "IdDepartment": {
+          "name": "IdDepartment",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DepartmentName": {
+          "name": "DepartmentName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DepartmentCode": {
+          "name": "DepartmentCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "GoodType": {
+      "name": "GoodType",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Goods": {
+      "name": "Goods",
+      "columns": {
+        "IdGood": {
+          "name": "IdGood",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoId": {
+          "name": "AutoId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GoodTypeId": {
+          "name": "GoodTypeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PropertyTypeId": {
+          "name": "PropertyTypeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GoodIdentification": {
+          "name": "GoodIdentification",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DepartmentId": {
+          "name": "DepartmentId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MunicipalityId": {
+          "name": "MunicipalityId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Address": {
+          "name": "Address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "OwnershipPercentage": {
+          "name": "OwnershipPercentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GoodDescription": {
+          "name": "GoodDescription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ZoneId": {
+          "name": "ZoneId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Goods_AutoId_Autos_IdAuto_fk": {
+          "name": "Goods_AutoId_Autos_IdAuto_fk",
+          "tableFrom": "Goods",
+          "tableTo": "Autos",
+          "columnsFrom": [
+            "AutoId"
+          ],
+          "columnsTo": [
+            "IdAuto"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "GoodsImages": {
+      "name": "GoodsImages",
+      "columns": {
+        "IdImage": {
+          "name": "IdImage",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "GoodId": {
+          "name": "GoodId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "FilingNumber": {
+          "name": "FilingNumber",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ImageStorageUrl": {
+          "name": "ImageStorageUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ImageName": {
+          "name": "ImageName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ImagePath": {
+          "name": "ImagePath",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "GoodsImages_GoodId_Goods_IdGood_fk": {
+          "name": "GoodsImages_GoodId_Goods_IdGood_fk",
+          "tableFrom": "GoodsImages",
+          "tableTo": "Goods",
+          "columnsFrom": [
+            "GoodId"
+          ],
+          "columnsTo": [
+            "IdGood"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "HearingState": {
+      "name": "HearingState",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Hearings": {
+      "name": "Hearings",
+      "columns": {
+        "IdHearing": {
+          "name": "IdHearing",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoId": {
+          "name": "AutoId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ActingAs": {
+          "name": "ActingAs",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HearingState": {
+          "name": "HearingState",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HearingDate": {
+          "name": "HearingDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HearingTime": {
+          "name": "HearingTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "HearingEndDate": {
+          "name": "HearingEndDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Hearings_AutoId_Autos_IdAuto_fk": {
+          "name": "Hearings_AutoId_Autos_IdAuto_fk",
+          "tableFrom": "Hearings",
+          "tableTo": "Autos",
+          "columnsFrom": [
+            "AutoId"
+          ],
+          "columnsTo": [
+            "IdAuto"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Keywords": {
+      "name": "Keywords",
+      "columns": {
+        "IdKeyword": {
+          "name": "IdKeyword",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoId": {
+          "name": "AutoId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Keyword": {
+          "name": "Keyword",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Keywords_AutoId_Autos_IdAuto_fk": {
+          "name": "Keywords_AutoId_Autos_IdAuto_fk",
+          "tableFrom": "Keywords",
+          "tableTo": "Autos",
+          "columnsFrom": [
+            "AutoId"
+          ],
+          "columnsTo": [
+            "IdAuto"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Municipalities": {
+      "name": "Municipalities",
+      "columns": {
+        "IdMunicipality": {
+          "name": "IdMunicipality",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DepartmentId": {
+          "name": "DepartmentId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MunicipalityName": {
+          "name": "MunicipalityName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MunicipalityCode": {
+          "name": "MunicipalityCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DepartmentCode": {
+          "name": "DepartmentCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Municipalities_DepartmentId_Departments_IdDepartment_fk": {
+          "name": "Municipalities_DepartmentId_Departments_IdDepartment_fk",
+          "tableFrom": "Municipalities",
+          "tableTo": "Departments",
+          "columnsFrom": [
+            "DepartmentId"
+          ],
+          "columnsTo": [
+            "IdDepartment"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "PropertyType": {
+      "name": "PropertyType",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "RecordState": {
+      "name": "RecordState",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AutoId": {
+          "name": "AutoId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "RecordState_AutoId_Autos_IdAuto_fk": {
+          "name": "RecordState_AutoId_Autos_IdAuto_fk",
+          "tableFrom": "RecordState",
+          "tableTo": "Autos",
+          "columnsFrom": [
+            "AutoId"
+          ],
+          "columnsTo": [
+            "IdAuto"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Zones": {
+      "name": "Zones",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DomainName": {
+          "name": "DomainName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Active": {
+          "name": "Active",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedBy": {
+          "name": "CreatedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreationDate": {
+          "name": "CreationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModifiedBy": {
+          "name": "ModifiedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ModificationDate": {
+          "name": "ModificationDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
