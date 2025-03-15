@@ -90,6 +90,7 @@ const db = drizzle({client: sqlite});
                 ModificationDate: stateRegister.fechaModificacion,
             })
 
+
             const goods = object.revBienes;
             for (const good of goods) {
                 const type = good.idTipoBien;
@@ -213,7 +214,7 @@ const db = drizzle({client: sqlite});
 
                     await db.insert(Hearings).values({
                         IdHearing: hearing.idAudiencia,
-                        AutoId: good.idBien,
+                        AutoId: object.idAuto,
                         ActingAs: actingAs.id,
                         HearingState: hearingState.id,
                         HearingDate: hearing.fechaAudiencia,
