@@ -169,7 +169,7 @@ const db = drizzle({client: sqlite});
                 })
             }
         } catch (e) {
-            console.error('Error processing object, caused by ', e)
+            console.error('Error processing object, caused by ', e, `Row: ${row.Id}`)
         }
     }
 })()
