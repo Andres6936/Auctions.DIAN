@@ -1,10 +1,10 @@
 import {Database} from "bun:sqlite";
-import { drizzle } from "drizzle-orm/bun-sqlite";
+import {drizzle} from "drizzle-orm/bun-sqlite";
 import {
     AuctionState,
     Autos,
     Departments,
-    Goods,
+    Goods, GoodsImages,
     GoodType,
     Municipalities,
     PropertyType,
@@ -107,18 +107,20 @@ const db = drizzle({client: sqlite});
                 }).returning()
 
                 const property = good.idTipoInmueble;
-                const [propertyType] = await db.insert(PropertyType).values({
-                    Serial: Bun.randomUUIDv7(),
-                    Id: property.id,
-                    DomainName: property.nombreDominio,
-                    Code: property.codigo,
-                    Description: property.descripcion,
-                    Active: property.activo,
-                    CreatedBy: property.creado,
-                    CreationDate: property.fechaCreacion,
-                    ModifiedBy: property.modificadoPor,
-                    ModificationDate: property.fechaModificacion,
-                }).returning();
+                if (property) {
+                    await db.insert(PropertyType).values({
+                        Serial: Bun.randomUUIDv7(),
+                        Id: property.id,
+                        DomainName: property.nombreDominio,
+                        Code: property.codigo,
+                        Description: property.descripcion,
+                        Active: property.activo,
+                        CreatedBy: property.creado,
+                        CreationDate: property.fechaCreacion,
+                        ModifiedBy: property.modificadoPor,
+                        ModificationDate: property.fechaModificacion,
+                    })
+                }
 
                 const department = good.idDepartamento;
                 await db.insert(Departments).values({
@@ -150,11 +152,21 @@ const db = drizzle({client: sqlite});
                     ModificationDate: zone.fechaModificacion,
                 })
 
+                const images = good.revBienesImagenes;
+                await db.insert(GoodsImages).values(images.map(it => ({
+                    IdImage: it.idImagen,
+                    GoodId: good.idBien,
+                    FilingNumber: it.nroRadicado,
+                    ImageStorageUrl: it.urlStorageImagen,
+                    ImageName: it.nombreImagen,
+                    ImagePath: it.rutaImagen,
+                })))
+
                 await db.insert(Goods).values({
                     IdGood: good.idBien,
                     AutoId: object.idAuto,
                     GoodTypeId: typeId.Id,
-                    PropertyTypeId: propertyType.Id,
+                    PropertyTypeId: property?.Id || null,
                     GoodIdentification: good.identificacionBien,
                     DepartmentId: department.idDepartamento,
                     MunicipalityId: municipality.idMunicipio,
