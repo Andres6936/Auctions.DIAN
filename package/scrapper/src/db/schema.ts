@@ -73,20 +73,6 @@ export const Goods = sqliteTable('Goods', {
     TypeZone: text('TypeZone'),
 });
 
-// Table: GoodType
-export const GoodType = sqliteTable('GoodType', {
-    Serial: text().primaryKey(),
-    Id: integer('Id'),
-    DomainName: text('DomainName'),
-    Code: integer('Code'),
-    Description: text('Description'),
-    Active: integer('Active', {mode: 'boolean'}),
-    CreatedBy: text('CreatedBy'),
-    CreationDate: text('CreationDate'),
-    ModifiedBy: text('ModifiedBy'),
-    ModificationDate: text('ModificationDate'),
-});
-
 // Table: PropertyType
 export const PropertyType = sqliteTable('PropertyType', {
     Serial: text().primaryKey(),

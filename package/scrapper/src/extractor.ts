@@ -5,7 +5,7 @@ import {
     Autos,
     Departments, Goods,
     GoodsImages,
-    GoodType, Hearings, HearingState,
+    Hearings, HearingState,
     Municipalities,
     PropertyType,
     RecordState
@@ -93,21 +93,6 @@ export async function processRow(id: number, payload: any) {
 
         const goods = object.revBienes;
         for (const good of goods) {
-            const type = good.idTipoBien;
-
-            const [typeId] = await db.insert(GoodType).values({
-                Serial: Bun.randomUUIDv7(),
-                Id: type.id,
-                DomainName: type.nombreDominio,
-                Code: type.codigo,
-                Description: type.descripcion,
-                Active: type.activo,
-                CreatedBy: type.creado,
-                CreationDate: type.fechaCreacion,
-                ModifiedBy: type.modificadoPor,
-                ModificationDate: type.fechaModificacion,
-            }).returning()
-
             const property = good.idTipoInmueble;
             if (property) {
                 await db.insert(PropertyType).values({
@@ -152,11 +137,12 @@ export async function processRow(id: number, payload: any) {
                 })))
             }
 
+            const type = good.idTipoBien;
             const zone = good.idZona;
             await db.insert(Goods).values({
                 IdGood: good.idBien,
                 AutoId: object.idAuto,
-                GoodTypeId: typeId.Id,
+                GoodTypeId: type.id,
                 TypeProperty: property.descripcion?.toUpperCase() ?? null,
                 GoodIdentification: good.identificacionBien,
                 DepartmentId: department.idDepartamento,
