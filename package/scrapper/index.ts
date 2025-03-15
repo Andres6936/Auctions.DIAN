@@ -165,7 +165,7 @@ const db = drizzle({client: sqlite});
                     CreationDate: good.fechaCreacion,
                     ModifiedBy: good.modificadoPor,
                     ModificationDate: good.fechaModificacion,
-                    ZoneId: good.zone.id,
+                    ZoneId: zone.id,
                 })
             }
         } catch (e) {
