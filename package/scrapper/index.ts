@@ -188,6 +188,10 @@ const db = drizzle({client: sqlite});
 
             const hearings = object.revAudiencias;
             for (let hearing of hearings) {
+                if (hearing.revActa) {
+                    console.log("Found register with act: ", row.Id)
+                }
+
                 const actingAs = hearing.actuandoComo;
                 await db.insert(ActingAs).values({
                     Serial: Bun.randomUUIDv7(),
