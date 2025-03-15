@@ -173,7 +173,7 @@ const db = drizzle({client: sqlite});
                     IdGood: good.idBien,
                     AutoId: object.idAuto,
                     GoodTypeId: typeId.Id,
-                    PropertyTypeId: property?.Id || null,
+                    PropertyTypeId: property?.Id ?? null,
                     GoodIdentification: good.identificacionBien,
                     DepartmentId: department.idDepartamento,
                     MunicipalityId: municipality.idMunicipio,
