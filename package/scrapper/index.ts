@@ -9,7 +9,7 @@ import {
     GoodType, Hearings, HearingState,
     Municipalities,
     PropertyType,
-    RecordState, Zones
+    RecordState,
 } from "./src/db/schema.ts";
 
 const sqlite = new Database(process.env.DB_FILE_NAME!);
@@ -143,20 +143,6 @@ const db = drizzle({client: sqlite});
                     DepartmentCode: municipality.codigoDepartamento
                 }).onConflictDoNothing()
 
-                const zone = good.idZona;
-                await db.insert(Zones).values({
-                    Serial: Bun.randomUUIDv7(),
-                    Id: zone.id,
-                    DomainName: zone.nombreDominio,
-                    Code: zone.codigo,
-                    Description: zone.descripcion,
-                    Active: zone.activo,
-                    CreatedBy: zone.creado,
-                    CreationDate: zone.fechaCreacion,
-                    ModifiedBy: zone.modificadoPor,
-                    ModificationDate: zone.fechaModificacion,
-                })
-
                 const images = good.revBienesImagenes;
                 if (images.length >= 1) {
                     await db.insert(GoodsImages).values(images.map(it => ({
@@ -169,6 +155,7 @@ const db = drizzle({client: sqlite});
                     })))
                 }
 
+                const zone = good.idZona;
                 await db.insert(Goods).values({
                     IdGood: good.idBien,
                     AutoId: object.idAuto,
@@ -185,6 +172,7 @@ const db = drizzle({client: sqlite});
                     ModifiedBy: good.modificadoPor,
                     ModificationDate: good.fechaModificacion,
                     ZoneId: zone.id,
+                    TypeZone: zone.descripcion.toUpperCase(),
                 })
             }
 

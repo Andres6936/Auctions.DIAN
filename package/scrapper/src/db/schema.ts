@@ -71,6 +71,7 @@ export const Goods = sqliteTable('Goods', {
     ModifiedBy: text('ModifiedBy'),
     ModificationDate: text('ModificationDate'),
     ZoneId: integer('ZoneId'),
+    TypeZone: text('TypeZone'),
 });
 
 // Table: GoodType
@@ -125,20 +126,6 @@ export const GoodsImages = sqliteTable('GoodsImages', {
     ImageStorageUrl: text('ImageStorageUrl'),
     ImageName: text('ImageName'),
     ImagePath: text('ImagePath'),
-});
-
-// Table: Zones
-export const Zones = sqliteTable('Zones', {
-    Serial: text().primaryKey(),
-    Id: integer('Id'),
-    DomainName: text('DomainName'),
-    Code: integer('Code'),
-    Description: text('Description'),
-    Active: integer('Active', {mode: 'boolean'}),
-    CreatedBy: text('CreatedBy'),
-    CreationDate: text('CreationDate'),
-    ModifiedBy: text('ModifiedBy'),
-    ModificationDate: text('ModificationDate'),
 });
 
 // Table: Hearings
