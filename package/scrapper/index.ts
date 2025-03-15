@@ -1,6 +1,6 @@
 import {Database} from "bun:sqlite";
 import { drizzle } from "drizzle-orm/bun-sqlite";
-import {Autos} from "./src/db/schema.ts";
+import {AuctionState, Autos, RecordState} from "./src/db/schema.ts";
 
 const sqlite = new Database(process.env.DB_FILE_NAME!);
 const db = drizzle({client: sqlite});
@@ -48,6 +48,36 @@ const db = drizzle({client: sqlite});
                 CreationDate: object.fechaCreacion,
                 ModifiedBy: object.modificadoPor,
                 ModificationDate: object.fechaModificacion,
+            })
+
+            const state = object.estadoRemate;
+            await db.insert(AuctionState).values({
+                Serial: Bun.randomUUIDv7(),
+                Id: state.id,
+                AutoId: object.idAuto,
+                DomainName: state.nombreDominio,
+                Code: state.codigo,
+                Description: state.descripcion,
+                Active: state.activo,
+                CreatedBy: state.creado,
+                CreationDate: state.fechaCreacion,
+                ModifiedBy: state.modificadoPor,
+                ModificationDate: state.fechaModificacion,
+            })
+
+            const stateRegister = object.estadoRegistro;
+            await db.insert(RecordState).values({
+                Serial: Bun.randomUUIDv7(),
+                Id: stateRegister.id,
+                AutoId: object.idAuto,
+                DomainName: stateRegister.nombreDominio,
+                Code: stateRegister.codigo,
+                Description: stateRegister.descripcion,
+                Active: stateRegister.activo,
+                CreatedBy: stateRegister.creado,
+                CreationDate: stateRegister.fechaCreacion,
+                ModifiedBy: stateRegister.modificadoPor,
+                ModificationDate: stateRegister.fechaModificacion,
             })
         } catch (e) {
             console.error('Error processing object, caused by ', e)

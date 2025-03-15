@@ -26,7 +26,8 @@ export const Autos = sqliteTable('Autos', {
 
 // Table: AuctionState
 export const AuctionState = sqliteTable('AuctionState', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     AutoId: integer('AutoId').references(() => Autos.IdAuto),
     DomainName: text('DomainName'),
     Code: integer('Code'),
@@ -40,7 +41,8 @@ export const AuctionState = sqliteTable('AuctionState', {
 
 // Table: RecordState
 export const RecordState = sqliteTable('RecordState', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     AutoId: integer('AutoId').references(() => Autos.IdAuto),
     DomainName: text('DomainName'),
     Code: integer('Code'),
@@ -73,7 +75,8 @@ export const Goods = sqliteTable('Goods', {
 
 // Table: GoodType
 export const GoodType = sqliteTable('GoodType', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     DomainName: text('DomainName'),
     Code: integer('Code'),
     Description: text('Description'),
@@ -86,7 +89,8 @@ export const GoodType = sqliteTable('GoodType', {
 
 // Table: PropertyType
 export const PropertyType = sqliteTable('PropertyType', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     DomainName: text('DomainName'),
     Code: integer('Code'),
     Description: text('Description'),
@@ -125,7 +129,8 @@ export const GoodsImages = sqliteTable('GoodsImages', {
 
 // Table: Zones
 export const Zones = sqliteTable('Zones', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     DomainName: text('DomainName'),
     Code: integer('Code'),
     Description: text('Description'),
@@ -153,7 +158,8 @@ export const Hearings = sqliteTable('Hearings', {
 
 // Table: ActingAs
 export const ActingAs = sqliteTable('ActingAs', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     DomainName: text('DomainName'),
     Code: integer('Code'),
     Description: text('Description'),
@@ -166,7 +172,8 @@ export const ActingAs = sqliteTable('ActingAs', {
 
 // Table: HearingState
 export const HearingState = sqliteTable('HearingState', {
-    Id: integer('Id').primaryKey(),
+    Serial: text().primaryKey(),
+    Id: integer('Id'),
     DomainName: text('DomainName'),
     Code: integer('Code'),
     Description: text('Description'),
