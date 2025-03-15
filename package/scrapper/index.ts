@@ -16,7 +16,7 @@ const sqlite = new Database(process.env.DB_FILE_NAME!);
 const db = drizzle({client: sqlite});
 
 (async () => {
-    const query = sqlite.query("SELECT * FROM Auctions LIMIT 10");
+    const query = sqlite.query("SELECT * FROM Auctions");
     for (const row of query.iterate()) {
         try {
             const payload = JSON.parse(row.Payload)
