@@ -143,7 +143,7 @@ export async function processRow(id: number, payload: any) {
                 IdGood: good.idBien,
                 AutoId: object.idAuto,
                 GoodTypeId: type.id,
-                TypeProperty: property.descripcion?.toUpperCase() ?? null,
+                TypeProperty: property?.descripcion?.toUpperCase() ?? null,
                 GoodIdentification: good.identificacionBien,
                 DepartmentId: department.idDepartamento,
                 MunicipalityId: municipality.idMunicipio,
