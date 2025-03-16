@@ -1,23 +1,5 @@
 import {processRow} from "./src/extractor.ts";
-
-const useQuery = async (url: string, options?: RequestInit) => {
-    return await fetch(new URL(url, process.env.BASE_URL).href, options);
-}
-
-const getToken = async () => {
-    const stream = await useQuery("/remate-virtual/api/auth/signin", {
-        method: "POST",
-        body: JSON.stringify({
-            usernameOrEmail: "EnEtldJjmen8BQk8XlbS6Ua5f7W3MhQ5lMmOEnIWyxM=",
-            password: "JWG4oaaul1oX+fxYdUDO/r7HPcxjwMPnRDHfgf2oy5I="
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    const payload = await stream.json();
-    return payload.accessToken;
-}
+import {getToken, useQuery} from "./src/login.ts";
 
 const token = await getToken();
 for (let index = 0; index < 3000; index++) {
