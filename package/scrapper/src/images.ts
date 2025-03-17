@@ -3,6 +3,8 @@ import {drizzle} from "drizzle-orm/bun-sqlite";
 import {getToken, getTokenSystem, useQuery} from "./login.ts";
 import sharp from "sharp";
 import {S3Client} from "bun";
+import {GoodsImages} from "./db/schema.ts";
+import {gt} from "drizzle-orm";
 
 const sqlite = new Database(process.env.DB_FILE_NAME!);
 const db = drizzle({client: sqlite});
@@ -15,7 +17,6 @@ const minio = new S3Client({
     // It might not be localhost in production!
     endpoint: process.env.MINIO_BASE_URL,
 });
-
 
 export async function withProcessImages() {
     const token = await getToken();
@@ -39,4 +40,12 @@ export async function withProcessImages() {
     await sharp(buffer).jpeg({quality: 70}).toFile('A-Quality-70.jpeg');
     await sharp(buffer).jpeg({quality: 60}).toFile('A-Quality-60.jpeg');
 
+}
+
+const getNextGoodImages = async (cursor?: number, pageSize = 99) => {
+    return db.select()
+        .from(GoodsImages)
+        .where(cursor ? gt(GoodsImages.GoodId, cursor) : undefined)
+        .limit(pageSize)
+        .orderBy(GoodsImages.GoodId)
 }
