@@ -32,4 +32,6 @@ const minio = new S3Client({
     const buffer = Buffer.from(response.body, 'base64');
     await Bun.write('A-Original.jpeg', buffer);
     await sharp(buffer).jpeg({quality: 80}).toFile('A-Quality-80.jpeg');
+    await sharp(buffer).jpeg({quality: 70}).toFile('A-Quality-70.jpeg');
+    await sharp(buffer).jpeg({quality: 60}).toFile('A-Quality-60.jpeg');
 })()
