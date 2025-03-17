@@ -127,7 +127,7 @@ export async function processRow(id: number, payload: any) {
 
             const images = good.revBienesImagenes;
             if (images.length >= 1) {
-                await db.insert(GoodsImages).values(images.map(it => ({
+                await db.insert(GoodsImages).values(images.map((it: any) => ({
                     IdImage: it.idImagen,
                     GoodId: good.idBien,
                     FilingNumber: it.nroRadicado,
