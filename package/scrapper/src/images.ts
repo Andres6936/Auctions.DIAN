@@ -24,7 +24,7 @@ export async function withProcessImages() {
     const errors = []
     let currentPage = 1;
     let query = await getNextGoodImages(currentPage, PAGE_SIZE);
-    console.log(`Processing ${query.length} images`)
+    console.log(`Processing ${query.length} images in the page: ${currentPage}`)
 
     while (query.length > 0) {
         const token = await getToken();
@@ -66,7 +66,7 @@ export async function withProcessImages() {
             }
         }
 
-        console.log("Processing the next block of images")
+        console.log(`Processing the next block of images in the page: ${currentPage}`)
         currentPage += 1;
         query = await getNextGoodImages(currentPage, PAGE_SIZE)
     }
