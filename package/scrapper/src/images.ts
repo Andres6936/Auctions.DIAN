@@ -20,12 +20,16 @@ const minio = new S3Client({
 
 export async function withProcessImages() {
     let goodImages = await getNextGoodImages();
+    console.log(`Processing ${goodImages.length} images`)
 
     while (goodImages.length > 0) {
         const token = await getToken();
         const tokenSystem = await getTokenSystem(token);
 
         for (const goodImage of goodImages) {
+            console.log(`Processing image ${goodImage.FilingNumber} of good ${goodImage.GoodId}`)
+
+            console.time("Get buffer image")
             const stream = await useQuery('/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado', {
                 method: "POST",
                 body: JSON.stringify({
@@ -37,12 +41,15 @@ export async function withProcessImages() {
                     Authorization: `Bearer ${token}`
                 }
             })
+            console.timeEnd("Get buffer image")
 
+            console.time("Processing image")
             const response = await stream.json();
             const buffer = await sharp(Buffer.from(response.body, 'base64'))
                 .jpeg({quality: 60})
                 .toBuffer();
             await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
+            console.timeEnd("Processing image")
         }
     }
 }
