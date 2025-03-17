@@ -16,3 +16,15 @@ export const getToken = async () => {
     const payload = await stream.json();
     return payload.accessToken;
 }
+
+export const getTokenSystem = async (token: string) => {
+    const stream = await useQuery("/remate-virtual/api/v1/common/usuario/sistema/getUsuario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        }
+    })
+    const payload = await stream.json();
+    return payload.token;
+}

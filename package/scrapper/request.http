@@ -34,6 +34,17 @@ Authorization: Bearer {{Token}}
 GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/2033
 Authorization: Bearer {{Token}}
 
+### Get system user token
+POST https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/common/usuario/sistema/getUsuario
+Authorization: Bearer {{Token}}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.global.set("TokenSystem", response.body.token)
+    });
+%}
+
 ### Get image
 POST https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado
 Content-Type: application/json
@@ -41,5 +52,6 @@ Authorization: Bearer {{Token}}
 
 {
   "nroRadicado": 52631376187261,
-  "usuarioSistema": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDIxNzU2MDcsInN1YiI6Ijk5OS0xIiwiYXVkIjpbIldvMGFLQWxCN3ZSUF8xNmZyUEkxeDlacGhCRWEiXSwiaXNzIjoiaHR0cHM6XC9cL211aXNjYS5kaWFuLmdvdi5jbyIsImp0aSI6IjUwNTE4NDVjLWEzNTktNDE5Yy1iM2NjLWU1NGYyZWYzN2FjOSIsImlhdCI6MTc0MjE3MjAwN30._n8Xf1UgXZuk6M5jiw67eAmcNU-THbnvBC85K8qVUdI"
+  "usuarioSistema": "{{TokenSystem}}"
 }
+
