@@ -1,6 +1,5 @@
 import {parseArgs} from 'node:util'
-import {processRow} from "./src/extractor.ts";
-import {getToken, useQuery} from "./src/login.ts";
+import {withProcessAuctions} from "./src/extractor.ts";
 import {withProcessImages} from "./src/images.ts";
 
 const {values} = parseArgs({
@@ -18,31 +17,9 @@ const {values} = parseArgs({
 })
 
 if (values.withProcessAuction) {
-    const token = await getToken();
-    for (let index = 0; index < 3000; index++) {
-        try {
-            console.time(`Processing auction (${index})`)
-            const [streamAuction] = await Promise.all([
-                useQuery(`/remate-virtual/api/v1/remate/bienes/getAll/${index}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }),
-            ]);
-
-            const [auction] = await Promise.all([
-                streamAuction.json(),
-            ]);
-
-            await processRow(index, auction);
-            console.timeEnd(`Processing auction (${index})`)
-        } catch (e) {
-
-        }
-
-        // Wait 500ms
-        await Bun.sleep(250);
-    }
+    console.log("Starting process auctions")
+    await withProcessAuctions();
+    console.log("Finished process auctions")
 
 } else if (values.withProcessImages) {
     console.log("Starting process images")
