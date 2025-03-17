@@ -18,8 +18,11 @@ const minio = new S3Client({
     endpoint: process.env.MINIO_BASE_URL,
 });
 
+const PAGE_SIZE = 99;
+
 export async function withProcessImages() {
-    let goodImages = await getNextGoodImages();
+    let cursor = 0;
+    let goodImages = await getNextGoodImages(cursor);
     console.log(`Processing ${goodImages.length} images`)
 
     while (goodImages.length > 0) {
@@ -50,11 +53,14 @@ export async function withProcessImages() {
                 .toBuffer();
             await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
             console.timeEnd("Processing image")
+
+            cursor += PAGE_SIZE;
+            goodImages = await getNextGoodImages(cursor)
         }
     }
 }
 
-const getNextGoodImages = async (cursor?: number, pageSize = 99) => {
+const getNextGoodImages = async (cursor?: number, pageSize = PAGE_SIZE) => {
     return db.select()
         .from(GoodsImages)
         .where(cursor ? gt(GoodsImages.GoodId, cursor) : undefined)
