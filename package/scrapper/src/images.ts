@@ -4,7 +4,7 @@ import {getToken, getTokenSystem, useQuery} from "./login.ts";
 import sharp from "sharp";
 import {S3Client} from "bun";
 import {GoodsImages} from "./db/schema.ts";
-import {gt} from "drizzle-orm";
+import {eq, gt} from "drizzle-orm";
 
 const sqlite = new Database(process.env.DB_FILE_NAME!);
 const db = drizzle({client: sqlite});
@@ -22,15 +22,16 @@ const PAGE_SIZE = 99;
 
 export async function withProcessImages() {
     const errors = []
-    let cursor = 0;
-    let goodImages = await getNextGoodImages(cursor);
-    console.log(`Processing ${goodImages.length} images`)
+    let currentPage = 1;
+    let query = await getNextGoodImages(currentPage, PAGE_SIZE);
+    console.log(`Processing ${query.length} images`)
 
-    while (goodImages.length > 0) {
+    while (query.length > 0) {
         const token = await getToken();
         const tokenSystem = await getTokenSystem(token);
 
-        for (const goodImage of goodImages) {
+        for (const row of query) {
+            const goodImage = row.GoodsImages;
             try {
                 console.log(`Processing image ${goodImage.FilingNumber} of good ${goodImage.GoodId}`)
 
@@ -66,18 +67,24 @@ export async function withProcessImages() {
         }
 
         console.log("Processing the next block of images")
-        cursor += PAGE_SIZE;
-        goodImages = await getNextGoodImages(cursor)
+        currentPage += 1;
+        query = await getNextGoodImages(currentPage, PAGE_SIZE)
     }
 
     console.log("Writing errors to file")
     await Bun.write("errors.json", JSON.stringify(errors, null, 2))
 }
 
-const getNextGoodImages = async (cursor?: number, pageSize = PAGE_SIZE) => {
+const getNextGoodImages = async (page = 1, pageSize = PAGE_SIZE) => {
+    const subQuery = db.select({Id: GoodsImages.IdImage})
+        .from(GoodsImages)
+        .orderBy(GoodsImages.GoodId)
+        .limit(pageSize)
+        .offset((page - 1) * pageSize)
+        .as('subquery')
+
     return db.select()
         .from(GoodsImages)
-        .where(cursor ? gt(GoodsImages.GoodId, cursor) : undefined)
-        .limit(pageSize)
-        .orderBy(GoodsImages.GoodId)
+        .innerJoin(subQuery, eq(GoodsImages.IdImage, subQuery.Id))
+        .orderBy(GoodsImages.IdImage)
 }
