@@ -1,18 +1,4 @@
-# Scrapper
-
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.2.4. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+# Scraper Scripts Tool
 
 ### Database
 
@@ -38,3 +24,11 @@ Apply migrations:
 ```bash
 bunx drizzle-kit migrate 
 ```
+
+### Storage
+
+```bash
+docker run -p 9000:9000 -p 9001:9001 --name minio1 -e "MINIO_ROOT_USER=ROOTUSER" -e "MINIO_ROOT_PASSWORD=CHANGEME123" minio/minio server /data --console-address ":9001"
+```
+
+###### This project was created using `bun init` in bun v1.2.4. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
