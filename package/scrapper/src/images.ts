@@ -53,10 +53,11 @@ export async function withProcessImages() {
                 .toBuffer();
             await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
             console.timeEnd("Processing image")
-
-            cursor += PAGE_SIZE;
-            goodImages = await getNextGoodImages(cursor)
         }
+
+        console.log("Processing the next block of images")
+        cursor += PAGE_SIZE;
+        goodImages = await getNextGoodImages(cursor)
     }
 }
 
