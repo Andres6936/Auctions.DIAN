@@ -1,6 +1,7 @@
+import {parseArgs} from 'node:util'
 import {processRow} from "./src/extractor.ts";
 import {getToken, useQuery} from "./src/login.ts";
-import {parseArgs} from 'node:util'
+import {withProcessImages} from "./src/images.ts";
 
 const {values} = parseArgs({
     args: Bun.argv,
@@ -44,7 +45,7 @@ if (values.withProcessAuction) {
     }
 
 } else if (values.withProcessImages) {
-    console.log("Processing")
+    await withProcessImages();
 } else {
     console.log("Nothing to do, see arguments of CLI")
 }
