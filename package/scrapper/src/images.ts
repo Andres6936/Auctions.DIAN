@@ -21,6 +21,7 @@ const minio = new S3Client({
 const PAGE_SIZE = 99;
 
 export async function withProcessImages() {
+    const errors = []
     let cursor = 0;
     let goodImages = await getNextGoodImages(cursor);
     console.log(`Processing ${goodImages.length} images`)
@@ -30,35 +31,47 @@ export async function withProcessImages() {
         const tokenSystem = await getTokenSystem(token);
 
         for (const goodImage of goodImages) {
-            console.log(`Processing image ${goodImage.FilingNumber} of good ${goodImage.GoodId}`)
+            try {
+                console.log(`Processing image ${goodImage.FilingNumber} of good ${goodImage.GoodId}`)
 
-            console.time("Get buffer image")
-            const stream = await useQuery('/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado', {
-                method: "POST",
-                body: JSON.stringify({
-                    nroRadicado: goodImage.FilingNumber,
-                    usuarioSistema: tokenSystem,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            console.timeEnd("Get buffer image")
+                console.time("Get buffer image")
+                const stream = await useQuery('/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        nroRadicado: goodImage.FilingNumber,
+                        usuarioSistema: tokenSystem,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                console.timeEnd("Get buffer image")
 
-            console.time("Processing image")
-            const response = await stream.json();
-            const buffer = await sharp(Buffer.from(response.body, 'base64'))
-                .jpeg({quality: 60})
-                .toBuffer();
-            await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
-            console.timeEnd("Processing image")
+                console.time("Processing image")
+                const response = await stream.json();
+                const buffer = await sharp(Buffer.from(response.body, 'base64'))
+                    .jpeg({quality: 60})
+                    .toBuffer();
+                await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
+                console.timeEnd("Processing image")
+            } catch (e: any) {
+                console.error(`Cannot process image (${goodImage.FilingNumber}), caused by: `, e.message)
+                errors.push({
+                    GoodId: goodImage.GoodId,
+                    Image: goodImage.FilingNumber,
+                    Error: e.message,
+                })
+            }
         }
 
         console.log("Processing the next block of images")
         cursor += PAGE_SIZE;
         goodImages = await getNextGoodImages(cursor)
     }
+
+    console.log("Writing errors to file")
+    await Bun.write("errors.json", JSON.stringify(errors, null, 2))
 }
 
 const getNextGoodImages = async (cursor?: number, pageSize = PAGE_SIZE) => {
