@@ -33,3 +33,13 @@ Authorization: Bearer {{Token}}
 ### Get official of auction
 GET https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/remate/contactarencargado/buscarencagadobyauto/2033
 Authorization: Bearer {{Token}}
+
+### Get image
+POST https://rematesvirtuales.dian.gov.co/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "nroRadicado": 52631376171995,
+  "usuarioSistema": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDIxNzExMzEsInN1YiI6Ijk5OS0xIiwiYXVkIjpbIldvMGFLQWxCN3ZSUF8xNmZyUEkxeDlacGhCRWEiXSwiaXNzIjoiaHR0cHM6XC9cL211aXNjYS5kaWFuLmdvdi5jbyIsImp0aSI6IjU1NTE3OTEzLTg4NDgtNGY1ZS04YmFiLWQ3YmU0YjkyYmQzZiIsImlhdCI6MTc0MjE2NzUzMX0.nb5U8W-KhhxmOUfzLBBTt9dBilSQ6CPZAmV0ezOe7dI"
+}
