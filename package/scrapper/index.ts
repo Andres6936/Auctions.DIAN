@@ -1,6 +1,6 @@
 import {processRow} from "./src/extractor.ts";
 import {getToken, useQuery} from "./src/login.ts";
-import {parseArgs} from 'util'
+import {parseArgs} from 'node:util'
 
 const {values} = parseArgs({
     args: Bun.argv,
