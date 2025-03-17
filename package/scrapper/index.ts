@@ -45,7 +45,10 @@ if (values.withProcessAuction) {
     }
 
 } else if (values.withProcessImages) {
+    console.log("Starting process images")
     await withProcessImages();
+    console.log("Finished process images")
+
 } else {
     console.log("Nothing to do, see arguments of CLI")
 }
