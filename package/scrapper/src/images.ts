@@ -47,15 +47,19 @@ export async function withProcessImages() {
                         Authorization: `Bearer ${token}`
                     }
                 })
+                const response = await stream.json();
+                const bufferPayload = Buffer.from(response.body, 'base64');
                 console.timeEnd("Get buffer image")
 
-                console.time("Processing image")
-                const response = await stream.json();
-                const buffer = await sharp(Buffer.from(response.body, 'base64'))
+                const sizeInBytes = bufferPayload.byteLength;
+                const sizeInKB = sizeInBytes / 1024;
+
+                console.time(`Processing image with size of ${sizeInKB.toFixed(2)} KB`)
+                const buffer = await sharp(bufferPayload)
                     .jpeg({quality: 60})
                     .toBuffer();
                 await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
-                console.timeEnd("Processing image")
+                console.timeEnd(`Processing image with size of ${sizeInKB.toFixed(2)} KB`)
             } catch (e: any) {
                 console.error(`Cannot process image (${goodImage.FilingNumber}), caused by: `, e.message)
                 errors.push({
