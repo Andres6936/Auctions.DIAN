@@ -43,8 +43,8 @@ if (values.withProcessAuction) {
         await Bun.sleep(250);
     }
 
-}
-
-if (values.withProcessImages) {
+} else if (values.withProcessImages) {
     console.log("Processing")
+} else {
+    console.log("Nothing to do, see arguments of CLI")
 }
