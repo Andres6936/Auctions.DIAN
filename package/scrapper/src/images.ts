@@ -19,27 +19,32 @@ const minio = new S3Client({
 });
 
 export async function withProcessImages() {
-    const token = await getToken();
-    const tokenSystem = await getTokenSystem(token);
-    const stream = await useQuery('/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado', {
-        method: "POST",
-        body: JSON.stringify({
-            nroRadicado: 52631376171995,
-            usuarioSistema: tokenSystem,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
+    let goodImages = await getNextGoodImages();
+
+    while (goodImages.length > 0) {
+        const token = await getToken();
+        const tokenSystem = await getTokenSystem(token);
+
+        for (const goodImage of goodImages) {
+            const stream = await useQuery('/remate-virtual/api/v1/common/getBlobStorageInvitadoPorNroRadicado', {
+                method: "POST",
+                body: JSON.stringify({
+                    nroRadicado: goodImage.FilingNumber,
+                    usuarioSistema: tokenSystem,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            const response = await stream.json();
+            const buffer = await sharp(Buffer.from(response.body, 'base64'))
+                .jpeg({quality: 60})
+                .toBuffer();
+            await minio.write(`${goodImage.GoodId}/${goodImage.FilingNumber}.jpeg`, buffer);
         }
-    })
-
-    const response = await stream.json();
-    const buffer = Buffer.from(response.body, 'base64');
-    await Bun.write('A-Original.jpeg', buffer);
-    await sharp(buffer).jpeg({quality: 80}).toFile('A-Quality-80.jpeg');
-    await sharp(buffer).jpeg({quality: 70}).toFile('A-Quality-70.jpeg');
-    await sharp(buffer).jpeg({quality: 60}).toFile('A-Quality-60.jpeg');
-
+    }
 }
 
 const getNextGoodImages = async (cursor?: number, pageSize = 99) => {
