@@ -1,22 +1,10 @@
-import {Database} from "bun:sqlite";
-import {drizzle} from "drizzle-orm/bun-sqlite";
 import {getToken, getTokenSystem, useQuery} from "./login.ts";
 import sharp from "sharp";
-import {S3Client} from "bun";
 import {GoodsImages} from "./db/schema.ts";
-import {eq, gt} from "drizzle-orm";
+import {eq} from "drizzle-orm";
+import {db} from "./client/db.client.ts";
+import {minio} from "./client/s3.client.ts";
 
-const sqlite = new Database(process.env.DB_FILE_NAME!);
-const db = drizzle({client: sqlite});
-
-const minio = new S3Client({
-    accessKeyId: process.env.MINIO_ACCESS_KEY,
-    secretAccessKey: process.env.MINIO_SECRET_KEY,
-    bucket: "public",
-    // Make sure to use the correct endpoint URL
-    // It might not be localhost in production!
-    endpoint: process.env.MINIO_BASE_URL,
-});
 
 const PAGE_SIZE = 99;
 
