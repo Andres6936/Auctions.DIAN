@@ -1,10 +1,10 @@
-import {db} from "./src/client/db.client.ts";
-import {GoodsImages} from "./src/db/schema.ts";
+import {db} from "../client/db.client.ts";
+import {GoodsImages} from "../db/schema.ts";
 import {like} from "drizzle-orm";
-import {getToken, getTokenSystem, useQuery} from "./src/login.ts";
+import {getToken, getTokenSystem, useQuery} from "../login.ts";
 import sharp from "sharp";
 import bmp from 'sharp-bmp';
-import {minio} from "./src/client/s3.client.ts";
+import {minio} from "../client/s3.client.ts";
 
 (async () => {
     const query = await db.select()
