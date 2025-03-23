@@ -3,6 +3,7 @@ import {GoodsImages} from "./src/db/schema.ts";
 import {like} from "drizzle-orm";
 import {getToken, getTokenSystem, useQuery} from "./src/login.ts";
 import sharp from "sharp";
+import bmp from 'sharp-bmp';
 import {minio} from "./src/client/s3.client.ts";
 
 (async () => {
@@ -37,9 +38,16 @@ import {minio} from "./src/client/s3.client.ts";
 
             const sizeInBytes = bufferPayload.byteLength;
             const sizeInKB = sizeInBytes / 1024;
+            const bitmap = bmp.decode(bufferPayload);
 
             console.time(`Processing image with size of ${sizeInKB.toFixed(2)} KB`)
-            const buffer = await sharp(bufferPayload)
+            const buffer = await sharp(bitmap.data, {
+                raw: {
+                    width: bitmap.width,
+                    height: bitmap.height,
+                    channels: 4,
+                }
+            })
                 .jpeg({quality: 60})
                 .toBuffer();
             await minio.write(`${row.GoodId}/${row.FilingNumber}.jpeg`, buffer);
