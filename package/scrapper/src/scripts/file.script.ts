@@ -1,10 +1,4 @@
-import {db} from "../client/db.client.ts";
-import {GoodsImages} from "../db/schema.ts";
-import {like} from "drizzle-orm";
 import {getToken, getTokenSystem, useQuery} from "../login.ts";
-import sharp from "sharp";
-import bmp from 'sharp-bmp';
-import {minio} from "../client/s3.client.ts";
 
 const NUMBER_FILE = '52631116328224';
 const EXTENSION_FILE = 'pdf';
