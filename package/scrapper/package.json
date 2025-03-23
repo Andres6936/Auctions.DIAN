@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "drizzle-orm": "^0.40.0",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "sharp-bmp": "^0.1.5"
   }
 }
