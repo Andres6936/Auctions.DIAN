@@ -1,8 +1,22 @@
 {
   "name": "schemas",
-  "module": "src/index.ts",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
   "type": "module",
   "version": "2025.03.24",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.js"
+    }
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./build && bun run build:types",
+    "build:types": "tsc --project tsconfig.types.json"
+  },
   "dependencies": {
     "drizzle-orm": "^0.40.0"
   },

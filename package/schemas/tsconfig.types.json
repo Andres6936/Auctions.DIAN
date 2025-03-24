@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,             // Genera los archivos .d.ts
+    "emitDeclarationOnly": true,     // Solo genera .d.ts (no genera .js)
+    "module": "ESNext",
+    "outDir": "./build",             // Carpeta de salida para los .d.ts
+    "strict": true,                  // Opcional: Las reglas strictas para tus tipos
+    "skipLibCheck": true,            // Opcional: Evita verificar tipos en las dependencias
+    "moduleResolution": "Bundler",
+    "declarationMap": false
+  },
+  "include": ["src/**/*"],            // Carpetas o archivos a procesar
+  "exclude": ["node_modules"] // Carpetas que no deben procesarse
+}
