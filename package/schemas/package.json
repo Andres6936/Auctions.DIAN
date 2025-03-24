@@ -2,6 +2,7 @@
   "name": "schemas",
   "module": "src/index.ts",
   "type": "module",
+  "version": "2025.03.24",
   "dependencies": {
     "drizzle-orm": "^0.40.0"
   },
