@@ -9,7 +9,7 @@ import {
     Municipalities,
     PropertyType,
     RecordState
-} from "./db/schema.ts";
+} from "schemas";
 import {drizzle} from "drizzle-orm/bun-sqlite";
 import {getToken, useQuery} from "./login.ts";
 

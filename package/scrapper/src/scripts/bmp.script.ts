@@ -1,5 +1,5 @@
 import {db} from "../client/db.client.ts";
-import {GoodsImages} from "../db/schema.ts";
+import {GoodsImages} from "schemas";
 import {like} from "drizzle-orm";
 import {getToken, getTokenSystem, useQuery} from "../login.ts";
 import sharp from "sharp";

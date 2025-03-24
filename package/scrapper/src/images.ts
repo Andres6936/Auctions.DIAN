@@ -1,6 +1,6 @@
 import {getToken, getTokenSystem, useQuery} from "./login.ts";
 import sharp from "sharp";
-import {GoodsImages} from "./db/schema.ts";
+import {GoodsImages} from "schemas";
 import {eq} from "drizzle-orm";
 import {db} from "./client/db.client.ts";
 import {minio} from "./client/s3.client.ts";
