@@ -1,6 +1,6 @@
 "use client";
 
-import "@/components/dock/index.module.css";
+import "@/components/dock/styles.css";
 
 import {
     motion,
