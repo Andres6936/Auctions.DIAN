@@ -35,7 +35,7 @@ export function Main() {
     return (
         <section
             className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw overflow:auto bg:slate-95 font:sans pb:5rem">
-            <div className="flex flex:col bg:#f8f9fa p:1.5rem py:4rem gap:2rem">
+            <div className="flex flex:col bg:#f8f9fa bb:1px|solid|#dee2e6 p:1.5rem py:4rem gap:2rem">
                 <H1>Encuentra bienes en remate</H1>
 
                 <div className="flex flex:col p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem">
