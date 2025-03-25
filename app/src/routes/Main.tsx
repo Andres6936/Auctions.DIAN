@@ -114,7 +114,7 @@ function Auction() {
                 <Text size={Text.Size.S}>202506300000085</Text>
             </div>
 
-            <Text>Yopal - Casanare</Text>
+            <Text info>Yopal - Casanare</Text>
 
             <div>
                 <div className="flex flex:row gap-x:2rem">
