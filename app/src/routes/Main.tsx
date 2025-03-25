@@ -40,7 +40,7 @@ export function Main() {
                     <H1>Encuentra bienes en remate</H1>
 
                     <div className="flex flex:col gap-y:0.5rem p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem">
-                        <div className="grid grid-cols:4 gap:0.5rem">
+                        <div className="grid grid-cols:4@md gap:0.5rem">
                             <Input
                                 label="Tipo de bien"
                             />
@@ -58,7 +58,7 @@ export function Main() {
                             />
                         </div>
 
-                        <div className="grid grid-cols:4 gap:0.5rem">
+                        <div className="grid grid-cols:4@md gap:0.5rem">
                             <Input
                                 label="Valor desde"
                             />
