@@ -80,41 +80,19 @@ export function Main() {
             <div className="flex flex:col p:1.5rem gap:2rem">
                 <H2>Proximas audiencias</H2>
 
-                <div className="flex flex:col gap:0.7rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
-                    <div className="bg:#dee2e6 w:full video r:0.5rem"/>
-                    <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
-                        <Text size={Text.Size.S}>Número del remate:</Text>
-                        <Text size={Text.Size.S}>202506300000085</Text>
-                    </div>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
 
-                    <Text>Yopal - Casanare</Text>
-
-                    <div>
-                        <div className="flex flex:row gap-x:2rem">
-                            <div className="flex flex:col">
-                                <Text size={Text.Size.S} bold>Fecha de audiencia</Text>
-                                <Text size={Text.Size.M}>2025-03-25</Text>
-                            </div>
-
-                            <div className="flex flex:col">
-                                <Text size={Text.Size.S} bold>Hora audiencia</Text>
-                                <Text size={Text.Size.M}>10:00</Text>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex flex:row gap-x:0.5rem">
-                        <Text size={Text.Size.S} bold>Avaluó del bien:</Text>
-                        <Text size={Text.Size.S} bold>922,140,000 COP</Text>
-                    </div>
-
-                    <div className="flex flex:col">
-                        <Text size={Text.Size.S}>Valor base oferta</Text>
-                        <Text bold>645,498,000 COP</Text>
-                    </div>
-
-                    <Button success>Ver</Button>
-                </div>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
+                <Auction/>
             </div>
 
             <Dock
@@ -124,5 +102,45 @@ export function Main() {
                 magnification={70}
             />
         </section>
+    )
+}
+
+function Auction() {
+    return (
+        <div className="flex flex:col gap:0.7rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
+            <div className="bg:#dee2e6 w:full video r:0.5rem"/>
+            <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
+                <Text size={Text.Size.S}>Número del remate:</Text>
+                <Text size={Text.Size.S}>202506300000085</Text>
+            </div>
+
+            <Text>Yopal - Casanare</Text>
+
+            <div>
+                <div className="flex flex:row gap-x:2rem">
+                    <div className="flex flex:col">
+                        <Text size={Text.Size.S} bold>Fecha de audiencia</Text>
+                        <Text size={Text.Size.M}>2025-03-25</Text>
+                    </div>
+
+                    <div className="flex flex:col">
+                        <Text size={Text.Size.S} bold>Hora audiencia</Text>
+                        <Text size={Text.Size.M}>10:00</Text>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex:row gap-x:0.5rem">
+                <Text size={Text.Size.S} bold>Avaluó del bien:</Text>
+                <Text size={Text.Size.S} bold>922,140,000 COP</Text>
+            </div>
+
+            <div className="flex flex:col mb:0.5rem">
+                <Text size={Text.Size.S}>Valor base oferta</Text>
+                <Text bold>645,498,000 COP</Text>
+            </div>
+
+            <Button success>Ver</Button>
+        </div>
     )
 }
