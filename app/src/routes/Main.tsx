@@ -80,19 +80,21 @@ export function Main() {
             <div className="flex flex:col p:1.5rem gap:2rem">
                 <H2>Proximas audiencias</H2>
 
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
+                <div className="grid grid-cols:3@md gap:1.5rem">
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
 
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
-                <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                    <Auction/>
+                </div>
             </div>
 
             <Dock
