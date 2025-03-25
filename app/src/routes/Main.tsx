@@ -35,47 +35,55 @@ export function Main() {
     return (
         <section
             className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw overflow:auto bg:slate-95 font:sans pb:5rem">
-            <div className="flex flex:col bg:#f8f9fa bb:1px|solid|#dee2e6">
-                <div className="flex flex:col gap:2rem p:1.5rem py:4rem">
+            <div className="flex flex:col bg:#f8f9fa bb:1px|solid|#dee2e6 justify-content:center align-items:center">
+                <div className="flex flex:col gap:2rem p:1.5rem py:4rem min-w:md@lg max-w:md@lg">
                     <H1>Encuentra bienes en remate</H1>
 
                     <div className="flex flex:col gap-y:0.5rem p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem">
-                        <Input
-                            label="Tipo de bien"
-                        />
+                        <div className="grid grid-cols:4 gap:0.5rem">
+                            <Input
+                                label="Tipo de bien"
+                            />
 
-                        <Input
-                            label="Tipo de inmueble"
-                        />
+                            <Input
+                                label="Tipo de inmueble"
+                            />
 
-                        <Input
-                            label="Departamento"
-                        />
+                            <Input
+                                label="Departamento"
+                            />
 
-                        <Input
-                            label="Ciudad"
-                        />
+                            <Input
+                                label="Ciudad"
+                            />
+                        </div>
 
-                        <Input
-                            label="Valor desde"
-                        />
+                        <div className="grid grid-cols:4 gap:0.5rem">
+                            <Input
+                                label="Valor desde"
+                            />
 
-                        <Input
-                            label="Valor hasta"
-                        />
+                            <Input
+                                label="Valor hasta"
+                            />
 
-                        <Input
-                            label="Fecha inicial audiencia"
-                        />
+                            <Input
+                                label="Fecha inicial audiencia"
+                            />
 
-                        <Input
-                            label="Fecha final audiencia"
-                        />
+                            <Input
+                                label="Fecha final audiencia"
+                            />
+                        </div>
                     </div>
 
-                    <Text size={Text.Size.S} info>Buscar por palabra</Text>
+                    <div className="text:center">
+                        <Text size={Text.Size.S} info>Buscar por palabra</Text>
+                    </div>
 
-                    <Button primary>Buscar</Button>
+                    <div className="flex justify-content:center align-items:center">
+                        <Button primary>Buscar</Button>
+                    </div>
                 </div>
             </div>
 
