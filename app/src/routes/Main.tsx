@@ -72,7 +72,7 @@ export function Main() {
                     />
                 </div>
 
-                <Text size={Text.Size.S}>Buscar por palabra</Text>
+                <Text size={Text.Size.S} info>Buscar por palabra</Text>
 
                 <Button primary>Buscar</Button>
             </div>
@@ -111,10 +111,10 @@ function Auction() {
             <div className="bg:#dee2e6 w:full video r:0.5rem"/>
             <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
                 <Text size={Text.Size.S}>Número del remate:</Text>
-                <Text size={Text.Size.S}>202506300000085</Text>
+                <Text size={Text.Size.S} bold>202506300000085</Text>
             </div>
 
-            <Text info>Yopal - Casanare</Text>
+            <Text size={Text.Size.S} info>YOPAL - CASANARE</Text>
 
             <div>
                 <div className="flex flex:row gap-x:2rem">
@@ -136,7 +136,7 @@ function Auction() {
             </div>
 
             <div className="flex flex:col mb:0.5rem">
-                <Text size={Text.Size.S}>Valor base oferta</Text>
+                <Text size={Text.Size.S} info>Valor base oferta</Text>
                 <Text bold>645,498,000 COP</Text>
             </div>
 
