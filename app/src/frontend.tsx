@@ -5,6 +5,9 @@
  * It is included in `src/index.html`.
  */
 
+// You need to import RingUI styles once
+import '@jetbrains/ring-ui-built/components/style.css';
+
 import {stackClientApp} from "@/stack";
 import {createRoot} from "react-dom/client";
 import {BrowserRouter, Route, Routes, useLocation} from "react-router";

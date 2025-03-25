@@ -2,6 +2,11 @@ import Dock from "@/components/dock";
 import {Archive, Home, Settings, User} from "lucide-react";
 import {useNavigate} from "react-router";
 import {useUser} from "@stackframe/react";
+import Button from '@jetbrains/ring-ui-built/components/button/button';
+import {H1} from "@jetbrains/ring-ui-built/components/heading/heading";
+import Input from "@jetbrains/ring-ui-built/components/input/input";
+import Text from "@jetbrains/ring-ui-built/components/text/text";
+
 
 export function Main() {
     useUser({ or: "redirect" });
@@ -29,54 +34,50 @@ export function Main() {
 
     return (
         <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw bg:slate-95 font:sans">
-            <div className="flex flex:col bg:#003566 p:1.5rem py:4rem gap:2rem">
-                <h1 className="color:white text:center font:1.5rem font:bold">Encuentra bienes en remate</h1>
+            <div className="flex flex:col bg:#f8f9fa p:1.5rem py:4rem gap:2rem">
+                <H1>Encuentra bienes en remate</H1>
 
-                <div className="flex flex:col p:1rem bg:white r:0.5rem">
-                    <label>
-                        Tipo de bien:
-                        <input type="text"/>
-                    </label>
+                <div className="flex flex:col p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem">
+                    <Input
+                        label="Tipo de bien"
+                    />
 
-                    <label>
-                        Tipo de inmueble:
-                        <input type="text"/>
-                    </label>
+                    <Input
+                        label="Tipo de inmueble"
+                    />
 
-                    <label>
-                        Departamento:
-                        <input type="text"/>
-                    </label>
+                    <Input
+                        label="Departamento"
+                    />
 
-                    <label>
-                        Ciudad:
-                        <input type="text"/>
-                    </label>
+                    <Input
+                        label="Ciudad"
+                    />
 
-                    <label>
-                        Valor desde:
-                        <input type="text"/>
-                    </label>
+                    <Input
+                        label="Valor desde"
+                        type="number"
+                    />
 
-                    <label>
-                        Valor hasta:
-                        <input type="text"/>
-                    </label>
+                    <Input
+                        label="Valor hasta"
+                        type="number"
+                    />
 
-                    <label>
-                        Fecha inicial audiencia:
-                        <input type="date"/>
-                    </label>
+                    <Input
+                        label="Fecha inicial audiencia"
+                        type="date"
+                    />
 
-                    <label>
-                        Fecha final audiencia:
-                        <input type="date"/>
-                    </label>
+                    <Input
+                        label="Fecha final audiencia"
+                        type="date"
+                    />
                 </div>
 
-                <p>Buscar por palabra</p>
+                <Text size={Text.Size.S}>Buscar por palabra</Text>
 
-                <button>Buscar</button>
+                <Button primary>Buscar</Button>
             </div>
 
             <h2>Proximas audiencias</h2>
