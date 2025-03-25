@@ -9,7 +9,7 @@ import Text from "@jetbrains/ring-ui-built/components/text/text";
 
 
 export function Main() {
-    useUser({ or: "redirect" });
+    useUser({or: "redirect"});
 
     const navigate = useNavigate();
 
@@ -33,7 +33,8 @@ export function Main() {
     ];
 
     return (
-        <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw overflow:auto bg:slate-95 font:sans">
+        <section
+            className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw overflow:auto bg:slate-95 font:sans pb:5rem">
             <div className="flex flex:col bg:#f8f9fa p:1.5rem py:4rem gap:2rem">
                 <H1>Encuentra bienes en remate</H1>
 
@@ -83,25 +84,40 @@ export function Main() {
             <div className="flex flex:col p:1.5rem gap:2rem">
                 <H2>Proximas audiencias</H2>
 
-                <div className="flex flex:col gap:2rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
+                <div className="flex flex:col gap:0.7rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
                     <div className="bg:red w:full video r:0.5rem"/>
-                    <p>Número del remate</p>
-                    <p>202506300000085</p>
+                    <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
+                        <Text size={Text.Size.S}>Número del remate:</Text>
+                        <Text size={Text.Size.S}>202506300000085</Text>
+                    </div>
 
-                    <p>Yopal - Casanare</p>
-                    <p>Fecha de audiencia</p>
-                    <p>2025-03-25</p>
+                    <Text>Yopal - Casanare</Text>
 
-                    <p>Hora audiencia</p>
-                    <p>10:00</p>
+                    <div>
+                        <div className="flex flex:row gap-x:2rem">
+                            <div className="flex flex:col">
+                                <Text size={Text.Size.S} bold>Fecha de audiencia</Text>
+                                <Text size={Text.Size.M}>2025-03-25</Text>
+                            </div>
 
-                    <p>Avaluó del bien:</p>
-                    <p>922,140,000 COP</p>
+                            <div className="flex flex:col">
+                                <Text size={Text.Size.S} bold>Hora audiencia</Text>
+                                <Text size={Text.Size.M}>10:00</Text>
+                            </div>
+                        </div>
+                    </div>
 
-                    <p>Valor base oferta</p>
-                    <p>645,498,000 COP</p>
+                    <div className="flex flex:row gap-x:0.5rem">
+                        <Text size={Text.Size.S} bold>Avaluó del bien:</Text>
+                        <Text size={Text.Size.S} bold>922,140,000 COP</Text>
+                    </div>
 
-                    <button>Ver</button>
+                    <div className="flex flex:col">
+                        <Text size={Text.Size.S}>Valor base oferta</Text>
+                        <Text bold>645,498,000 COP</Text>
+                    </div>
+
+                    <Button primary>Ver</Button>
                 </div>
             </div>
 
