@@ -88,7 +88,9 @@ export function Main() {
             </div>
 
             <div className="flex flex:col p:1.5rem gap:2rem">
-                <H2>Proximas audiencias</H2>
+                <div className="text:center">
+                    <H2>Proximas audiencias</H2>
+                </div>
 
                 <div className="grid grid-cols:3@md grid-cols:4@2xl gap:1.5rem">
                     <Auction/>
