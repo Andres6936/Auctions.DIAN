@@ -24,7 +24,6 @@
         "@types/bun": "latest",
         "@types/react": "^19",
         "@types/react-dom": "^19",
-        "drizzle-kit": "^0.30.6",
       },
     },
     "packages/schemas": {
