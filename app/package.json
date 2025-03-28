@@ -16,7 +16,6 @@
     "@orpc/client": "^0.51.0",
     "@orpc/server": "^0.51.0",
     "@stackframe/react": "^2.7.23",
-    "drizzle-orm": "^0.41.0",
     "lucide-react": "^0.477.0",
     "motion": "^12.4.10",
     "react": "^19",
@@ -27,6 +26,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.30.6"
   }
 }
