@@ -39,7 +39,7 @@ export function Main() {
                 <div className="flex flex:col gap:2rem p:1.5rem py:4rem">
                     <H1>Encuentra bienes en remate</H1>
 
-                    <div className="flex flex:col gap-y:0.5rem p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem">
+                    <div className="flex flex:col gap-y:0.5rem p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem box-shadow:2|2|3|gray-80">
                         <div className="grid grid-cols:4@md gap:0.5rem">
                             <Input
                                 label="Tipo de bien"
