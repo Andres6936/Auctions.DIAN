@@ -3,6 +3,7 @@
   "version": "2025.03.24",
   "private": true,
   "workspaces": [
-    "package/*"
+    "packages/*",
+    "app"
   ]
 }

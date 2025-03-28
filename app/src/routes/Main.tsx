@@ -3,11 +3,10 @@ import {Archive, Home, Settings, User} from "lucide-react";
 import {useNavigate} from "react-router";
 import {useUser} from "@stackframe/react";
 import Button from '@jetbrains/ring-ui-built/components/button/button';
-import {H1, H2} from "@jetbrains/ring-ui-built/components/heading/heading";
-import Input from "@jetbrains/ring-ui-built/components/input/input";
+import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 import Text from "@jetbrains/ring-ui-built/components/text/text";
-import {SearchOptions} from "@/components/page/search-options";
 import {SearchSection} from "@/components/page/search-section";
+import {useEffect} from "react";
 
 
 export function Main() {
@@ -33,6 +32,16 @@ export function Main() {
             label: 'Settings', onClick: () => navigate('/handler/account-settings')
         },
     ];
+
+    useEffect(() => {
+        (async () => {
+            const stream = await fetch('/api/auctions/all', {
+                method: "GET"
+            })
+            const json = await stream.json();
+            console.log({json})
+        })()
+    }, []);
 
     return (
         <section

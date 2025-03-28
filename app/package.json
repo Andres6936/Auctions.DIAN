@@ -13,12 +13,16 @@
   "dependencies": {
     "@jetbrains/ring-ui-built": "^7.0.34",
     "@master/normal.css": "^3.1.0",
+    "@orpc/client": "^0.51.0",
+    "@orpc/server": "^0.51.0",
     "@stackframe/react": "^2.7.23",
+    "drizzle-orm": "^0.41.0",
     "lucide-react": "^0.477.0",
     "motion": "^12.4.10",
     "react": "^19",
     "react-dom": "^19",
-    "react-router": "^7.2.0"
+    "react-router": "^7.2.0",
+    "schemas": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",
