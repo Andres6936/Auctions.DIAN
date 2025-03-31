@@ -14,7 +14,7 @@
     "build"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./build && bun run build:types",
+    "build": "bun build ./src/index.ts --target bun --outdir ./build && bun run build:types",
     "build:types": "tsc --project tsconfig.types.json"
   },
   "dependencies": {
