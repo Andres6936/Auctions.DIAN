@@ -1,7 +1,6 @@
 import {serve} from "bun";
 import index from "./index.html";
-import {db} from "@/server/client/db.client";
-import {Autos} from "schemas";
+import {AutosQuery} from "schemas";
 
 const server = serve({
     routes: {
@@ -32,7 +31,7 @@ const server = serve({
 
         "/api/auctions/all": {
             async GET() {
-                const query = await db.select().from(Autos).limit(10);
+                const query = await AutosQuery.getAll();
                 return Response.json({
                     body: query
                 })
