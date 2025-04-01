@@ -12,9 +12,11 @@ export class AutosQuery {
             .offset((page - 1) * pageSize)
             .as('SubQuery')
 
-        return db.select()
+        const query = await db.select()
             .from(Autos)
             .innerJoin(subQuery, eq(Autos.IdAuto, subQuery.Id))
             .orderBy(desc(Autos.CreationDate))
+
+        return query.map(it => it.Autos);
     }
 }
