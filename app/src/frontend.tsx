@@ -8,6 +8,7 @@
 // You need to import RingUI styles once
 import '@jetbrains/ring-ui-built/components/style.css';
 
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {stackClientApp} from "@/stack";
 import {createRoot} from "react-dom/client";
 import {BrowserRouter, Route, Routes, useLocation} from "react-router";
@@ -15,27 +16,32 @@ import {StackHandler, StackProvider, StackTheme} from "@stackframe/react";
 import {Employee} from "@/routes/Employee";
 import {Main} from "@/routes/Main";
 
+// Create a client
+const queryClient = new QueryClient()
+
 function HandlerRoutes() {
     const location = useLocation();
 
     return (
-        <StackHandler app={stackClientApp} location={location.pathname} fullPage />
+        <StackHandler app={stackClientApp} location={location.pathname} fullPage/>
     );
 }
 
 const elem = document.getElementById("root")!;
 const app = (
-    <BrowserRouter>
-        <StackProvider app={stackClientApp}>
-            <StackTheme>
-                <Routes>
-                    <Route path="/handler/*" element={<HandlerRoutes />} />
-                    <Route path="/employee" element={<Employee/>}/>
-                    <Route path="/" element={<Main/>}/>
-                </Routes>
-            </StackTheme>
-        </StackProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <StackProvider app={stackClientApp}>
+                <StackTheme>
+                    <Routes>
+                        <Route path="/handler/*" element={<HandlerRoutes/>}/>
+                        <Route path="/employee" element={<Employee/>}/>
+                        <Route path="/" element={<Main/>}/>
+                    </Routes>
+                </StackTheme>
+            </StackProvider>
+        </BrowserRouter>
+    </QueryClientProvider>
 );
 
 if (import.meta.hot) {

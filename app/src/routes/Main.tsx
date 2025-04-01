@@ -6,13 +6,25 @@ import Button from '@jetbrains/ring-ui-built/components/button/button';
 import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 import Text from "@jetbrains/ring-ui-built/components/text/text";
 import {SearchSection} from "@/components/page/search-section";
+import {useQuery} from '@tanstack/react-query'
 import {useEffect} from "react";
 
+const getAuctions = async () => {
+    const stream = await fetch('/api/auctions/all', {
+        method: "GET"
+    })
+    return await stream.json();
+}
 
 export function Main() {
     useUser({or: "redirect"});
 
     const navigate = useNavigate();
+
+    const query = useQuery({
+        queryKey: ["/api/auctions/all"],
+        queryFn: getAuctions,
+    })
 
     const items = [
         {
@@ -34,14 +46,8 @@ export function Main() {
     ];
 
     useEffect(() => {
-        (async () => {
-            const stream = await fetch('/api/auctions/all', {
-                method: "GET"
-            })
-            const json = await stream.json();
-            console.log({json})
-        })()
-    }, []);
+        console.log(query.data)
+    }, [query.data]);
 
     return (
         <section
