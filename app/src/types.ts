@@ -1,4 +1,4 @@
-import {Autos, Goods} from "schemas";
+import {Autos, Goods, GoodsImages} from "schemas";
 
 export type BaseResponse<Code, Body> = {
     statusCode: Code;
@@ -6,7 +6,8 @@ export type BaseResponse<Code, Body> = {
 }
 
 export type AuctionModel = typeof Autos.$inferSelect & {
-    Good: typeof Goods.$inferSelect;
+    Good: typeof Goods.$inferSelect | null,
+    Images: typeof GoodsImages.$inferSelect[],
 }
 
 export type GETAuctionAll = BaseResponse<200, {

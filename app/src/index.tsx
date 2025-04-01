@@ -1,6 +1,6 @@
 import {serve} from "bun";
 import index from "./index.html";
-import {AutosQuery, GoodQuery} from "schemas";
+import {AutosQuery, GoodQuery, ImagesQuery} from "schemas";
 import type {AuctionModel, GETAuctionAll} from '@/types'
 
 const server = serve({
@@ -35,9 +35,11 @@ const server = serve({
                 const items: AuctionModel[] = [];
                 const auctions = await AutosQuery.getAll();
                 for (const auction of auctions) {
+                    const good = await GoodQuery.getByIdAuction(auction.IdAuto)
                     items.push({
                         ...auction,
-                        Good: await GoodQuery.getByIdAuction(auction.IdAuto)
+                        Good: good,
+                        Images: good ? await ImagesQuery.getByIdGood(good.IdGood) : [],
                     })
                 }
 
