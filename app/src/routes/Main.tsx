@@ -7,8 +7,7 @@ import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 import Text from "@jetbrains/ring-ui-built/components/text/text";
 import {SearchSection} from "@/components/page/search-section";
 import {useQuery} from '@tanstack/react-query'
-import type {GETAuctionAll} from "@/types";
-import type {Autos} from 'schemas';
+import {AuctionModel, GETAuctionAll} from "@/types";
 import {formatMoney} from "@/formatter/money";
 
 const getAuctions = async () => {
@@ -74,7 +73,9 @@ export function Main() {
     )
 }
 
-function Auction({model}: { model: typeof Autos.$inferSelect }) {
+function Auction({model}: { model: AuctionModel }) {
+    console.log(model.Good)
+
     return (
         <div className="flex flex:col gap:0.7rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
             <div className="bg:#dee2e6 w:full video r:0.5rem"/>

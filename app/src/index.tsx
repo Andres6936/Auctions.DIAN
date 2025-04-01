@@ -1,7 +1,7 @@
 import {serve} from "bun";
 import index from "./index.html";
-import {AutosQuery} from "schemas";
-import {GETAuctionAll} from '@/types'
+import {AutosQuery, GoodQuery} from "schemas";
+import type {AuctionModel, GETAuctionAll} from '@/types'
 
 const server = serve({
     routes: {
@@ -32,11 +32,19 @@ const server = serve({
 
         "/api/auctions/all": {
             async GET() {
-                const query = await AutosQuery.getAll();
+                const items: AuctionModel[] = [];
+                const auctions = await AutosQuery.getAll();
+                for (const auction of auctions) {
+                    items.push({
+                        ...auction,
+                        Good: await GoodQuery.getByIdAuction(auction.IdAuto)
+                    })
+                }
+
                 return Response.json({
                     statusCode: 200,
                     body: {
-                        Items: query,
+                        Items: items,
                         Page: 1,
                         PageSize: 10,
                     }
