@@ -9,6 +9,7 @@ import {SearchSection} from "@/components/page/search-section";
 import {useQuery} from '@tanstack/react-query'
 import type {GETAuctionAll} from "@/types";
 import type {Autos} from 'schemas';
+import {formatMoney} from "@/formatter/money";
 
 const getAuctions = async () => {
     const stream = await fetch('/api/auctions/all', {
@@ -79,7 +80,7 @@ function Auction({model}: { model: typeof Autos.$inferSelect }) {
             <div className="bg:#dee2e6 w:full video r:0.5rem"/>
             <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
                 <Text size={Text.Size.S}>Número del remate:</Text>
-                <Text size={Text.Size.S} bold>202506300000085</Text>
+                <Text size={Text.Size.S} bold>{model.AutoNumber}</Text>
             </div>
 
             <Text size={Text.Size.S} info>YOPAL - CASANARE</Text>
@@ -100,12 +101,12 @@ function Auction({model}: { model: typeof Autos.$inferSelect }) {
 
             <div className="flex flex:row gap-x:0.5rem">
                 <Text size={Text.Size.S} bold>Avaluó del bien:</Text>
-                <Text size={Text.Size.S} bold>922,140,000 COP</Text>
+                <Text size={Text.Size.S} bold>{formatMoney(model.TotalAppraisalValue || 0)} COP</Text>
             </div>
 
             <div className="flex flex:col mb:0.5rem">
                 <Text size={Text.Size.S} info>Valor base oferta</Text>
-                <Text bold>645,498,000 COP</Text>
+                <Text bold>{formatMoney(model.TotalBiddingBaseValue || 0)} COP</Text>
             </div>
 
             <Button success>Ver</Button>
