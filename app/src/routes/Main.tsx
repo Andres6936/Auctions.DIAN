@@ -7,13 +7,14 @@ import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 import Text from "@jetbrains/ring-ui-built/components/text/text";
 import {SearchSection} from "@/components/page/search-section";
 import {useQuery} from '@tanstack/react-query'
-import {useEffect} from "react";
+import type {GETAuctionAll} from "@/types";
+import type {Autos} from 'schemas';
 
 const getAuctions = async () => {
     const stream = await fetch('/api/auctions/all', {
         method: "GET"
     })
-    return await stream.json();
+    return await stream.json() as GETAuctionAll;
 }
 
 export function Main() {
@@ -45,10 +46,6 @@ export function Main() {
         },
     ];
 
-    useEffect(() => {
-        console.log(query.data)
-    }, [query.data]);
-
     return (
         <section
             className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw overflow:auto bg:slate-95 font:sans pb:5rem">
@@ -60,19 +57,9 @@ export function Main() {
                 </div>
 
                 <div className="grid grid-cols:3@md grid-cols:4@3xl gap:1.5rem">
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
-                    <Auction/>
+                    {query.data && query.data.body.Items.map((auction) =>
+                        <Auction model={auction}/>
+                    )}
                 </div>
             </div>
 
@@ -86,7 +73,7 @@ export function Main() {
     )
 }
 
-function Auction() {
+function Auction({model}: { model: typeof Autos.$inferSelect }) {
     return (
         <div className="flex flex:col gap:0.7rem p:1.5rem bg:#f8f9fa border:1px|solid|#e9ecef r:0.5rem">
             <div className="bg:#dee2e6 w:full video r:0.5rem"/>

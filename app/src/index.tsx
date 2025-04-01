@@ -1,6 +1,7 @@
 import {serve} from "bun";
 import index from "./index.html";
 import {AutosQuery} from "schemas";
+import {GETAuctionAll} from '@/types'
 
 const server = serve({
     routes: {
@@ -33,8 +34,13 @@ const server = serve({
             async GET() {
                 const query = await AutosQuery.getAll();
                 return Response.json({
-                    body: query
-                })
+                    statusCode: 200,
+                    body: {
+                        Items: query,
+                        Page: 1,
+                        PageSize: 10,
+                    }
+                } satisfies GETAuctionAll)
             },
 
             async POST(req) {
