@@ -2,7 +2,7 @@ export default function Header() {
     return (
         <nav>
             <section
-                className="flex h:2rem align-items:center justify-content:space-between px:1rem bg:var(--ring-button-primary-background-color) color:white">
+                className="flex h:2rem align-items:center justify-content:space-between px:1rem bg:var(--primary-background-color) color:white">
                 <p className="uppercase">Gov.co</p>
 
                 <div className="flex flex:row gap-x:1rem">

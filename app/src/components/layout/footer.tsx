@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <footer
-            className="flex flex:col flex:row@md px:2rem py:5rem bg:var(--ring-button-primary-background-color) color:white font-size:0.75rem">
+            className="flex flex:col flex:row@md px:2rem py:5rem bg:var(--primary-background-color) color:white font-size:0.75rem">
             <section className="flex flex:1 flex:col justify-content:start align-items:center">
                 <div className="max-w:15rem">
                     <img className="w:100% brightness(100)" src="/public/img/LogoCO.png" alt="Photo"/>
