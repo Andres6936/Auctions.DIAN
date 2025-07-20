@@ -10,7 +10,8 @@ export default function Header() {
                     <p>Español</p>
                 </div>
             </section>
-            <section className="flex h:3rem align-items:center justify-content:space-between px:1rem">
+            <section
+                className="flex h:3rem align-items:center justify-content:space-between px:1rem border-bottom:2px|solid|gray-88">
                 <div className="max-w:5rem">
                     <img className="w:100%" src="/public/img/LogoCO.png" alt="Photo"/>
                 </div>
