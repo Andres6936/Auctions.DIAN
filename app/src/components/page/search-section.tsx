@@ -1,4 +1,3 @@
-import {H1} from "@jetbrains/ring-ui-built/components/heading/heading";
 import {SearchOptions} from "@/components/page/search-options";
 
 export function SearchSection() {
@@ -19,7 +18,7 @@ export function SearchSection() {
             />
 
             <div className="flex flex:col gap:2rem p:1.5rem py:4rem z:9">
-                <H1>Encuentra bienes en remate</H1>
+                <h1 className="font:bold">Encuentra bienes en remate</h1>
                 <SearchOptions/>
             </div>
         </div>
