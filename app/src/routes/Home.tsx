@@ -1,11 +1,9 @@
 import {Fragment} from "react";
 import {useNavigate} from "react-router";
 import {useQuery} from '@tanstack/react-query'
-import {Archive, Home as HomeIcon, Settings, User} from "lucide-react";
 import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 
 import {GETAuctionAll} from "@/types";
-import Dock from "@/components/dock";
 import {SearchSection} from "@/components/page/search-section";
 import {Auction} from "@/components/view/home/auction";
 import Header from "@/components/layout/header";
@@ -26,25 +24,6 @@ export function Home() {
         queryFn: getAuctions,
     })
 
-    const items = [
-        {
-            icon: <HomeIcon size={18} className="color:white"/>,
-            label: 'Home', onClick: () => alert('Home!')
-        },
-        {
-            icon: <User size={18} className="color:white"/>,
-            label: 'Profile', onClick: () => navigate('/employee')
-        },
-        {
-            icon: <Archive size={18} className="color:white"/>,
-            label: 'Archive', onClick: () => alert('Archive!')
-        },
-        {
-            icon: <Settings size={18} className="color:white"/>,
-            label: 'Settings', onClick: () => navigate('/handler/account-settings')
-        },
-    ];
-
     return (
         <Fragment>
             <Header/>
@@ -63,13 +42,6 @@ export function Home() {
                         )}
                     </div>
                 </div>
-
-                <Dock
-                    items={items}
-                    panelHeight={68}
-                    baseItemSize={50}
-                    magnification={70}
-                />
             </section>
             <Footer/>
         </Fragment>
