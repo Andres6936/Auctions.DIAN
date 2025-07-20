@@ -8,6 +8,7 @@
 // You need to import RingUI styles once
 import '@jetbrains/ring-ui-built/components/style.css';
 
+import {createTheme, MantineProvider} from '@mantine/core';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {stackClientApp} from "@/stack";
 import {createRoot} from "react-dom/client";
@@ -18,6 +19,9 @@ import {Home} from "@/routes/Home";
 
 // Create a client
 const queryClient = new QueryClient()
+const theme = createTheme({
+    fontFamily: "Public Sans, sans-serif",
+});
 
 function HandlerRoutes() {
     const location = useLocation();
@@ -29,19 +33,21 @@ function HandlerRoutes() {
 
 const elem = document.getElementById("root")!;
 const app = (
-    <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-            <StackProvider app={stackClientApp}>
-                <StackTheme>
-                    <Routes>
-                        <Route path="/handler/*" element={<HandlerRoutes/>}/>
-                        <Route path="/employee" element={<Employee/>}/>
-                        <Route path="/" element={<Home/>}/>
-                    </Routes>
-                </StackTheme>
-            </StackProvider>
-        </BrowserRouter>
-    </QueryClientProvider>
+    <MantineProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <StackProvider app={stackClientApp}>
+                    <StackTheme>
+                        <Routes>
+                            <Route path="/handler/*" element={<HandlerRoutes/>}/>
+                            <Route path="/employee" element={<Employee/>}/>
+                            <Route path="/" element={<Home/>}/>
+                        </Routes>
+                    </StackTheme>
+                </StackProvider>
+            </BrowserRouter>
+        </QueryClientProvider>
+    </MantineProvider>
 );
 
 if (import.meta.hot) {

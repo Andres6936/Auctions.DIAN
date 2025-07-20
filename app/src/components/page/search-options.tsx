@@ -1,6 +1,5 @@
-import Input from "@jetbrains/ring-ui-built/components/input/input";
-import Text from "@jetbrains/ring-ui-built/components/text/text";
-import Button from "@jetbrains/ring-ui-built/components/button/button";
+import {Button, TextInput} from "@mantine/core";
+
 
 export function SearchOptions() {
     return (
@@ -8,37 +7,44 @@ export function SearchOptions() {
             <div
                 className="flex flex:col gap-y:0.5rem p:1rem bg:white b:1px|solid|#e9ecef r:0.5rem box-shadow:2|2|3|gray-80">
                 <div className="grid grid-cols:4@md gap:0.5rem">
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Tipo de bien"
                     />
 
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Tipo de inmueble"
                     />
 
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Departamento"
                     />
 
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Ciudad"
                     />
                 </div>
 
                 <div className="grid grid-cols:4@md gap:0.5rem">
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Valor desde"
                     />
 
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Valor hasta"
                     />
 
-                    <Input
+                    <TextInput
+                        size="xs"
                         label="Fecha inicial audiencia"
                     />
 
-                    <Input
+                    <TextInput
                         label="Fecha final audiencia"
                     />
                 </div>
@@ -46,11 +52,11 @@ export function SearchOptions() {
 
 
             <div className="text:center">
-                <Text size={Text.Size.S} info>Buscar por palabra</Text>
+                <p className="opacity:0.5 font-size:0.75rem">Buscar por palabra</p>
             </div>
 
             <div className="flex justify-content:center align-items:center">
-                <Button primary>Buscar</Button>
+                <Button variant="filled">Buscar</Button>
             </div>
         </>
     )
