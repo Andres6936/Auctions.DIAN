@@ -1,6 +1,5 @@
 import "@/index.css";
 
-import photo from '@/img/KevinSpace.jpg';
 import {ChevronLeft} from "@/icons/ChevronLeft";
 import {ListIcon} from "@/icons/List";
 import {useNavigate} from "react-router";
@@ -11,7 +10,7 @@ export function Employee() {
     return (
         <section className="flex flex:1 flex:col h:100vh max-h:100vh w:100vw max-w:100vw bg:slate-95 font:sans">
             <div className="position:relative flex:1">
-                <img className="w:100%" src={photo} alt="Photo"/>
+                <img className="w:100%" src="/public/img/KevinSpace.jpg" alt="Photo"/>
 
                 <div
                     onClick={() => navigate(-1)}

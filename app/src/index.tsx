@@ -8,6 +8,14 @@ const server = serve({
         // Serve index.html for all unmatched routes.
         "/*": index,
 
+        "/public/*": {
+            async GET(req) {
+                const url = new URL(req.url)
+                const file = url.pathname.replace("/public/", "")
+                return new Response(Bun.file(`./public/${file}`));
+            }
+        },
+
         "/api/hello": {
             async GET(req) {
                 return Response.json({
