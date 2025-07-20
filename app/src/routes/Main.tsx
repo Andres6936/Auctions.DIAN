@@ -1,7 +1,6 @@
 import Dock from "@/components/dock";
 import {Archive, Home, Settings, User} from "lucide-react";
 import {useNavigate} from "react-router";
-import {useUser} from "@stackframe/react";
 import Button from '@jetbrains/ring-ui-built/components/button/button';
 import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
 import Text from "@jetbrains/ring-ui-built/components/text/text";
@@ -18,8 +17,6 @@ const getAuctions = async () => {
 }
 
 export function Main() {
-    useUser({or: "redirect"});
-
     const navigate = useNavigate();
 
     const query = useQuery({
