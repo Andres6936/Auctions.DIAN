@@ -7,6 +7,7 @@ import {SearchSection} from "@/components/page/search-section";
 import {Auction} from "@/components/view/home/auction";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import {Pagination} from "@mantine/core";
 
 const getAuctions = async () => {
     const stream = await fetch('/api/auctions/all', {
@@ -40,6 +41,10 @@ export function Home() {
                             <Auction key={auction.IdAuto} model={auction}/>
                         )}
                     </div>
+                </div>
+
+                <div className="flex justify-content:center align-items:center mt:4rem">
+                    <Pagination total={10}/>
                 </div>
             </section>
             <Footer/>
