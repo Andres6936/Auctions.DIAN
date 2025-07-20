@@ -59,6 +59,18 @@ export default function Page() {
                         </div>
                     </div>
                 </div>
+
+                <div className="flex flex:col w:50% gap:1rem">
+                    <h4 className="font:1.3rem font:bold">Descripción del Remate</h4>
+
+                    <p className="font:0.85rem">CUATRIMOTO, VEHICULO AUTOMOTOR DE PLACA AWU99G-MARCA, CFMOTO, LINEA
+                        CF4400-B,COLOR
+                        BLANCO, MODELO 2022, CILINDRAJE 400, No. 268mq2a014052, No. CHASIS LCEPESL43N6000251</p>
+
+                    <div className="bg:cyan-80 rounded w:fit px:1rem font:0.85rem">
+                        <p>Cuatrimoto</p>
+                    </div>
+                </div>
             </section>
             <Footer/>
         </Fragment>
