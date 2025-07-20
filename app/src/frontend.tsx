@@ -14,7 +14,7 @@ import {createRoot} from "react-dom/client";
 import {BrowserRouter, Route, Routes, useLocation} from "react-router";
 import {StackHandler, StackProvider, StackTheme} from "@stackframe/react";
 import {Employee} from "@/routes/Employee";
-import {Main} from "@/routes/Main";
+import {Home} from "@/routes/Home";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -36,7 +36,7 @@ const app = (
                     <Routes>
                         <Route path="/handler/*" element={<HandlerRoutes/>}/>
                         <Route path="/employee" element={<Employee/>}/>
-                        <Route path="/" element={<Main/>}/>
+                        <Route path="/" element={<Home/>}/>
                     </Routes>
                 </StackTheme>
             </StackProvider>

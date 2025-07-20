@@ -1,5 +1,5 @@
 import Dock from "@/components/dock";
-import {Archive, Home, Settings, User} from "lucide-react";
+import {Archive, Home as HomeIcon, Settings, User} from "lucide-react";
 import {useNavigate} from "react-router";
 import Button from '@jetbrains/ring-ui-built/components/button/button';
 import {H2} from "@jetbrains/ring-ui-built/components/heading/heading";
@@ -16,7 +16,7 @@ const getAuctions = async () => {
     return await stream.json() as GETAuctionAll;
 }
 
-export function Main() {
+export function Home() {
     const navigate = useNavigate();
 
     const query = useQuery({
@@ -26,7 +26,7 @@ export function Main() {
 
     const items = [
         {
-            icon: <Home size={18} className="color:white"/>,
+            icon: <HomeIcon size={18} className="color:white"/>,
             label: 'Home', onClick: () => alert('Home!')
         },
         {
