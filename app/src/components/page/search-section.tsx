@@ -1,4 +1,5 @@
 import {SearchOptions} from "@/components/page/search-options";
+import {Button} from "@mantine/core";
 
 export function SearchSection() {
     return (
@@ -20,6 +21,12 @@ export function SearchSection() {
             <div className="flex flex:col gap:2rem p:1.5rem py:4rem z:9">
                 <h1 className="font:bold">Encuentra bienes en remate</h1>
                 <SearchOptions/>
+            </div>
+
+            <div className="abs top:2.5rem right:2.5rem flex">
+                <Button>
+                    Ingresar
+                </Button>
             </div>
         </div>
     )
