@@ -17,7 +17,7 @@ const getAuctions = async () => {
     return await stream.json() as GETAuctionAll;
 }
 
-export function Home() {
+export default function Page() {
     const navigate = useNavigate();
 
     const query = useQuery({

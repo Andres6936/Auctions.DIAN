@@ -1,5 +1,3 @@
-import "@/index.css";
-
 import {ChevronLeft} from "@/icons/ChevronLeft";
 import {ListIcon} from "@/icons/List";
 import {useNavigate} from "react-router";

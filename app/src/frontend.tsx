@@ -5,6 +5,8 @@
  * It is included in `src/index.html`.
  */
 
+import "@/index.css";
+
 import {createTheme, MantineProvider} from '@mantine/core';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {stackClientApp} from "@/stack";
@@ -12,7 +14,8 @@ import {createRoot} from "react-dom/client";
 import {BrowserRouter, Route, Routes, useLocation} from "react-router";
 import {StackHandler, StackProvider, StackTheme} from "@stackframe/react";
 import {Employee} from "@/routes/Employee";
-import {Home} from "@/routes/Home";
+import Home from "@/routes/Home";
+import ViewAuction from "@/routes/ViewAuction";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -38,6 +41,7 @@ const app = (
                         <Routes>
                             <Route path="/handler/*" element={<HandlerRoutes/>}/>
                             <Route path="/employee" element={<Employee/>}/>
+                            <Route path="/view/*" element={<ViewAuction/>}/>
                             <Route path="/" element={<Home/>}/>
                         </Routes>
                     </StackTheme>
