@@ -45,6 +45,7 @@ export function SearchOptions() {
                     />
 
                     <TextInput
+                        size="xs"
                         label="Fecha final audiencia"
                     />
                 </div>
