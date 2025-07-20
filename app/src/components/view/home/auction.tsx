@@ -1,7 +1,6 @@
-import Button from '@jetbrains/ring-ui-built/components/button/button';
-import Text from "@jetbrains/ring-ui-built/components/text/text";
 import {AuctionModel} from "@/types";
 import {formatMoney} from "@/formatter/money";
+import {Button} from "@mantine/core";
 
 
 function Auction({model}: { model: AuctionModel }) {
@@ -19,39 +18,39 @@ function Auction({model}: { model: AuctionModel }) {
                 </div>
             </div>
 
-            <div className="flex flex:col gap:0.7rem p:0.5rem">
+            <div className="flex flex:col gap:0.7rem p:0.5rem font-size:0.85rem">
                 <div className="flex flex:row gap-x:0.5rem bg:#7de2d1 b:1px|solid|#00cecb p:0.3rem r:0.3rem">
-                    <Text size={Text.Size.S}>Número del remate:</Text>
-                    <Text size={Text.Size.S} bold>{model.AutoNumber}</Text>
+                    <p>Número del remate:</p>
+                    <p className="font:bold">{model.AutoNumber}</p>
                 </div>
 
-                <Text size={Text.Size.S} info>YOPAL - CASANARE</Text>
+                <p className="opacity:0.5">YOPAL - CASANARE</p>
 
                 <div>
                     <div className="flex flex:row gap-x:2rem">
                         <div className="flex flex:col">
-                            <Text size={Text.Size.S} bold>Fecha de audiencia</Text>
-                            <Text size={Text.Size.M}>2025-03-25</Text>
+                            <p className="font:bold">Fecha de audiencia</p>
+                            <p>2025-03-25</p>
                         </div>
 
                         <div className="flex flex:col">
-                            <Text size={Text.Size.S} bold>Hora audiencia</Text>
-                            <Text size={Text.Size.M}>10:00</Text>
+                            <p className="font:bold">Hora audiencia</p>
+                            <p>10:00</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex:row gap-x:0.5rem">
-                    <Text size={Text.Size.S} bold>Avaluó del bien:</Text>
-                    <Text size={Text.Size.S} bold>{formatMoney(model.TotalAppraisalValue || 0)} COP</Text>
+                    <p className="font:bold">Avaluó del bien:</p>
+                    <p className="font:bold">{formatMoney(model.TotalAppraisalValue || 0)} COP</p>
                 </div>
 
                 <div className="flex flex:col mb:0.5rem">
-                    <Text size={Text.Size.S} info>Valor base oferta</Text>
-                    <Text bold>{formatMoney(model.TotalBiddingBaseValue || 0)} COP</Text>
+                    <p>Valor base oferta</p>
+                    <p className="font:bold">{formatMoney(model.TotalBiddingBaseValue || 0)} COP</p>
                 </div>
 
-                <Button success>Ver</Button>
+                <Button>Ver</Button>
             </div>
         </div>
     )
