@@ -73,6 +73,42 @@ export default function Page() {
                         <p>Cuatrimoto</p>
                     </div>
                 </div>
+
+                <div className="flex flex:row gap:1rem mt:3rem">
+                    <div
+                        className="rel flex flex:3 align-items:center justify-content:center border:1px|solid|gray-80 r:10 p:1rem">
+                        <div className="flex w:25rem square bg:gray-80 r:10"></div>
+
+                        <div
+                            className="abs top:0 right:0 p:1rem bg:gray-90 rtr:10 rbl:20 text:white font:bold text-align:center">
+                            <p>70%</p>
+                        </div>
+                    </div>
+
+                    <div className="flex flex:2 flex:col gap:1rem">
+                        <div className="flex flex:col gap:1rem border:1px|solid|gray-80 r:10 p:1rem">
+                            <h4 className="font:1.3rem font:bold">Mueble</h4>
+                            <div className="bg:cyan-80 r:5 px:1rem py:0.5rem">
+                                <p className="opacity:0.7 font:0.85rem">Número de identificación del bien:</p>
+                                <p className="font:semibold">VEHICULO AUTOMOTOR DE PLACA AWU99G-MARCA, CFMOTO, LINEA
+                                    CF44</p>
+                            </div>
+
+                            <div className="flex flex:col gap:0.7rem font:0.85rem">
+                                <p className="font:bold">Porcentaje del bien a rematar: 100%</p>
+                                <p className="font:bold">Dirección: Cra 8 1-36</p>
+                                <p className="font:bold">POPAYÁN - CAUCA</p>
+
+                                <p>Un vehículo tipo motocicleta con las siguientes características; No tiene espejos,
+                                    llantas en
+                                    regular estado, presenta rayanoes a mano izquierda, no se conoce su estado
+                                    tecnicomecanico,
+                                    lo demás conforme al inventario realizado por la Policía en el momento de la
+                                    inmovilización.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             <Information/>
             <Footer/>
