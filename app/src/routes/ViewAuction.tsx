@@ -1,7 +1,9 @@
 import {Fragment} from "react";
+import {Button} from "@mantine/core";
+
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import {Button} from "@mantine/core";
+import {Information} from "@/components/view/home/information";
 
 export default function Page() {
     return (
@@ -72,6 +74,7 @@ export default function Page() {
                     </div>
                 </div>
             </section>
+            <Information/>
             <Footer/>
         </Fragment>
     )
