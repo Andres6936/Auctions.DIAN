@@ -7,13 +7,22 @@ export default function Footer() {
                     <img className="w:100% brightness(100)" src="/public/img/LogoCO.png" alt="Photo"/>
                 </div>
             </section>
+            <span className="flex min-w:1px bg:white"/>
             <section className="flex flex:1 flex:col px:2rem gap-y:0.2rem">
                 <h6 className="font:bold font-size:1rem mb:1rem">Dirección de Impuestos y Aduanas Nacionales</h6>
 
                 <p>Dirección: Sede principal | Bogotá, Nivel Central, carrera 8 Nº 6C - 38 Edificio San Agustín</p>
                 <p>Código Postal: 111711</p>
                 <p>Horario Contact Center: Lunes a viernes 8:00 a.m. a 7:00 p.m. y sábados de 8:00 am a 12m</p>
+
+                <div className="flex flex:row gap-x:0.5rem mt:1.5rem">
+                    <div className="bg:white w:2.5rem aspect-ratio:1/1 r:100%"/>
+                    <div className="bg:white w:2.5rem aspect-ratio:1/1 r:100%"/>
+                    <div className="bg:white w:2.5rem aspect-ratio:1/1 r:100%"/>
+                    <div className="bg:white w:2.5rem aspect-ratio:1/1 r:100%"/>
+                </div>
             </section>
+            <span className="flex min-w:1px bg:white"/>
             <section className="flex flex:1 flex:col px:2rem gap-y:0.2rem">
                 <h6 className="font:bold font-size:1rem mb:1rem">Contacto a nivel nacional</h6>
 
