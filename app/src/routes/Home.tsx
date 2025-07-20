@@ -49,7 +49,7 @@ export function Home() {
         <Fragment>
             <Header/>
             <section
-                className="flex flex:1 flex:col bg:slate-95 font:sans pb:5rem">
+                className="flex flex:1 flex:col bg:slate-95 pb:5rem">
                 <SearchSection/>
 
                 <div className="flex flex:col p:1.5rem gap:2rem justify-content:center align-items:center">
