@@ -1,13 +1,14 @@
 import {Fragment} from "react";
 import {useNavigate} from "react-router";
 import {useQuery} from '@tanstack/react-query'
+import {Pagination} from "@mantine/core";
 
 import {GETAuctionAll} from "@/types";
 import {SearchSection} from "@/components/page/search-section";
 import {Auction} from "@/components/view/home/auction";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import {Pagination} from "@mantine/core";
+import {Information} from "@/components/view/home/information";
 
 const getAuctions = async () => {
     const stream = await fetch('/api/auctions/all', {
@@ -28,7 +29,7 @@ export function Home() {
         <Fragment>
             <Header/>
             <section
-                className="flex flex:1 flex:col bg:slate-95 pb:5rem">
+                className="flex flex:1 flex:col bg:slate-95">
                 <SearchSection/>
 
                 <div className="flex flex:col p:1.5rem gap:2rem justify-content:center align-items:center">
@@ -43,9 +44,11 @@ export function Home() {
                     </div>
                 </div>
 
-                <div className="flex justify-content:center align-items:center mt:4rem">
+                <div className="flex justify-content:center align-items:center my:4rem">
                     <Pagination total={10}/>
                 </div>
+
+                <Information/>
             </section>
             <Footer/>
         </Fragment>
