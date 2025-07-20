@@ -5,9 +5,6 @@
  * It is included in `src/index.html`.
  */
 
-// You need to import RingUI styles once
-import '@jetbrains/ring-ui-built/components/style.css';
-
 import {createTheme, MantineProvider} from '@mantine/core';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {stackClientApp} from "@/stack";
